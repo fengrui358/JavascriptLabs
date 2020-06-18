@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>test</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 1.插值，不能使用条件语句 -->
+      <span>{{message}} {{value}}</span>
+      <!-- 2.vue binding -->
+      <span v-bind:title="value">文本</span>
+      <!-- 3.vue bingding id -->
+      <div :id="message"></div>
+      <button v-on:click="reverseMessage">反转</button>
+      <ul>
+        <li>
+          <!-- 4.vue 条件渲染 -->
+          <span v-if="!item.del">{{item.title}}</span>
+          <span v-else style="text-decoration: line-through;"
+            >{{item.title}}</span
+          >
+          <!-- 5.vue show -->
+          <button v-show="!item.del" title="title">删除</button>
+        </li>
+        <!-- 6.vue for语句 -->
+        <li v-for="(item, index) of list">
+          <span v-if="!item.del">{{item.title}}</span>
+          <span v-else :style="styleObj">{{item.title}}</span>
+          <button v-show="!item.del" @click="deleteHandler(item.title)">
+            删除{{index}}
+          </button>
+        </li>
+      </ul>
+
+      <p>下面是组件列表示例</p>
+      <ul>
+        <course-item
+          v-for="item in list"
+          :key="item.title"
+          :course="item"
+          :style-obj="styleObj"
+          v-on:del-event="deleteHandler"
+        >
+          <template v-slot:header="{course}"
+            ><a href="#" v-if="!item.del">
+              插槽测试Header {{message}}--{{course.title}}</a
+            ></template
+          >
+          <a href="#" v-if="item.del"> 插槽测试 {{message}}</a></course-item
+        >
+      </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
