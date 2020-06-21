@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    var config = {
+      //Token
+      token: "testEvent",
+    };
+
+    function globalHandler(event) {
+        console.log("globalHandler接受到事件--" + new Date());
+        console.log(event.detail);
+    };
+
+    var eventMasterClass = function () {
+      this.event = new CustomEvent(config.token, {
+        detail: {
+          message: "",
+        },
+      });
+    };
+
+    var eventMaster = new eventMasterClass();
+
+    //1. 测试全局函数订阅
+    (function(){
+        window.addEventListener(config.token, globalHandler);
+
+        let firstEvent = new eventMasterClass();
+        firstEvent.event.detail.message = new Date() + "--测试事件触发";
+        window.dispatchEvent(eventMaster.event);
+
+        //移除globalHandler
+        //delete window.globalHandler;
+        window.globalHandler = null;
+
+        //测试效果为无法从内存回收函数
+        window.dispatchEvent(eventMaster.event);
+
+
+
+    })();
+
+    //2. 测试对象函数订阅
+    // var eventClient = function(){
+    //     this.handler = function(event){
+    //         console.log("eventClient接收到事件--" + new Date());
+    //         console.log(event.detail);
+    //     }
+    // };
+
+    // (function(){
+    //     window.addEventListener(config.token, globalHandler);
+
+    //     let firstEvent = new eventMasterClass();
+    //     firstEvent.event.detail.message = new Date() + "--测试事件触发";
+    //     window.dispatchEvent(eventMaster.event);
+
+    //     //移除globalHandler
+    //     //delete window.globalHandler;
+    //     window.globalHandler = null;
+
+    //     //测试效果为无法从内存回收函数
+    //     window.dispatchEvent(eventMaster.event);
+
+
+
+    // })();
+
+    //3. 测试弱引用
+
+  </script>
+</html>
