@@ -19,10 +19,27 @@
     var div = document.getElementById("display");
 
     function handleFiles(files) {
-      for (var i = 0; i < files.length; i++) {
+      for (let i = 0; i < files.length; i++) {
         var img = document.createElement("img");
         img.src = window.URL.createObjectURL(files[i]);
         div.appendChild(img);
+
+        console.log("第" + (i + 1) + "个文件。");
+        console.log("文件名:" + files[i].name);
+        console.log("文件大小:" + files[i].size);
+        console.log("文件类型:" + files[i].type);
+        console.log("文件修改时间:" + files[i].lastModified);
+
+        var fileReader = new FileReader();
+        fileReader.onload = function (event) {
+          console.log("第" + (i + 1) + "个文件读取成功" + event.target.result +"。")
+        };
+
+        fileReader.readAsDataURL(files[i]);
+
+        img.onload = function () {
+          window.URL.revokeObjectURL(this.src);
+        };
       }
     }
   </script>
