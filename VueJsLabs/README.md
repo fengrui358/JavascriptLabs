@@ -11,3 +11,7 @@
 ## demo04
 
 id 选择器和 name 选择器。
+
+## demo05 (Vue Router)
+
+Vue 路由学习 <https://router.vuejs.org/zh/guide/#html>
