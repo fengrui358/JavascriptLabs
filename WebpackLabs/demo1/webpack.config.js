@@ -1,10 +1,19 @@
 // ./webpack.config.js
-const path = require('path')
+// import { Configuration, NoEmitOnErrorsPlugin } from "webpack";
 
-module.exports = {
-  entry: './src/main.js',
+// ./webpack.config.js
+const path = require("path");
+
+/**
+ * @type {Configuration}
+ */
+const config = {
+  mode: 'none',
+  entry: "./src/main.js",
   output: {
-    filename: 'bundle.js',
-    path: path.join(__dirname, 'output')
-  }
-}
+    filename: "bundle.js",
+    path: path.join(__dirname, "output"),
+  },
+};
+
+module.exports = config;
