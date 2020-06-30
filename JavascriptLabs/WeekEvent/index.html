@@ -28,33 +28,10 @@
     var eventMaster = new EventMasterClass();
 
     //1. 测试全局函数订阅
-    (function () {
-      window.addEventListener(config.token, globalHandler);
-
-      let firstEvent = new EventMasterClass();
-      firstEvent.event.detail.message = new Date() + "--测试事件触发";
-      window.dispatchEvent(eventMaster.event);
-
-      //移除globalHandler
-      //delete window.globalHandler;
-      window.globalHandler = null;
-
-      //测试效果为无法从内存回收函数
-      window.dispatchEvent(eventMaster.event);
-    })();
-
-    //2. 测试对象函数订阅
-    // var EventClient = function () {};
-
-    // EventClient.prototype.handler = function (event) {
-    //   console.log("eventClient接收到事件--" + new Date());
-    //   console.log(event.detail);
-    // };
-
     // (function () {
     //   window.addEventListener(config.token, globalHandler);
 
-    //   let firstEvent = new eventMasterClass();
+    //   let firstEvent = new EventMasterClass();
     //   firstEvent.event.detail.message = new Date() + "--测试事件触发";
     //   window.dispatchEvent(eventMaster.event);
 
@@ -65,6 +42,31 @@
     //   //测试效果为无法从内存回收函数
     //   window.dispatchEvent(eventMaster.event);
     // })();
+
+    //2. 测试对象函数订阅
+    var EventClient = function () {};
+    //实例化一个订阅客户端
+    var eventClient = new EventClient();
+
+    EventClient.prototype.handler = function (event) {
+      console.log("eventClient接收到事件--" + new Date());
+      console.log(event.detail);
+    };
+
+    (function () {
+      window.addEventListener(config.token, eventClient.handler);
+
+      let firstEvent = new EventMasterClass();
+      firstEvent.event.detail.message = new Date() + "--测试事件触发";
+      window.dispatchEvent(eventMaster.event);
+
+      //移除globalHandler
+      //delete window.globalHandler;
+      window.eventClient = null;
+
+      //测试效果为无法从内存回收函数
+      window.dispatchEvent(eventMaster.event);
+    })();
 
     //3. 测试弱引用
   </script>
