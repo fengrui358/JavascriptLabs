@@ -1,4 +1,4 @@
-<!-- https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Introduction#%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90Flexbox -->
+<!-- https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Introduction#Grid%E5%B8%83%E5%B1%80 -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,15 +13,20 @@
         <div class="box1">One</div>
         <div class="box2">Two</div>
         <div class="box3">Three</div>
+        <div class="box4">Four</div>
+        <div class="box5">Five</div>
+        <div class="box6">Six</div>
     </div>
 </body>
 <style>
     .wrapper {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 100px 100px;
+        grid-gap: 10px;
     }
 
     .wrapper>* {
-        flex:1;
         background-color: aqua;
     }
 </style>
