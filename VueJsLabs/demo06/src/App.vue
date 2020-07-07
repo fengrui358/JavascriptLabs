@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <br>
-    <Performance v-bind:key="n" v-for="n in 1000"/>
+    <br />
+    <Performance v-bind:key="n" v-for="n in 1000" />
   </div>
 </template>
 
