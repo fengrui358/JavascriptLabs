@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/reset.scss">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="box1"><p>One</p></div>
+        <div class="box2">Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two</div>
+        <div class="box3">Three</div>
+    </div>
+</body>
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: auto 400px;
+        justify-content: flex-start;
+    }
+
+    .box1 {
+        background-color: red;
+        width: 150px;
+    }
+
+    .box2 {
+        background-color: green;
+        width: 580px;
+    }
+
+    .box3 {
+        background-color: hotpink;
+        width: 180px;
+    }
+</style>
+</html>
