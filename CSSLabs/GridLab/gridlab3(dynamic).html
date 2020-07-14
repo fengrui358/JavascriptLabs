@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="outer-container">
+        <div class="sub-menus"></div>
+        <div class="main-container grid1">
+            <div class="left-side"></div>
+            <div class="main-area">
+                <button id="addToLeftSide">向 left side 添加内容</button>
+                <button id="removeFromLeftSide">从 left side 移除内容</button>
+            </div>
+            <div class="ext-area"></div>
+            <div class="operate-area">
+            </div>
+            <div class="right-side">
+                <div class="right-side-top"></div>
+                <div class="right-side-bottom"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .outer-container {
+        margin: 62px 0 0 0;
+        width: 100%;
+        height: calc(100vh - 62px);
+        background-color: aqua;
+    }
+
+    .main-container {
+        background-color: #0B1324;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: 1fr auto auto;
+        height: 100%;
+        padding: 12px 0 0 0;
+    }
+
+    .grid1 {
+        grid-template-areas:
+            "left-side main-area right-side"
+            "left-side ext-area right-side"
+            "left-side operate-area right-side";
+    }
+
+    /* 有两种布局方式，主要区别在operate-area，如果内容溢出则第二种布局方式 */
+    .grid2 {
+        grid-template-areas:
+            "left-side main-area right-side"
+            "left-side ext-area right-side"
+            "left-side operate-area operate-area";
+    }
+
+    .main-container .left-side {
+        /* width 由内容元素控制 */
+        /* width: 388px; */
+        height: 100%;
+        grid-row-start: left-side-start;
+        grid-row-end: left-side-end;
+        grid-column-start: left-side-start;
+        grid-column-end: left-side-end;
+        background-color: red;
+        overflow: auto;
+    }
+
+    .main-container .main-area {
+        /* 默认区域 */
+        grid-row-start: main-area-start;
+        grid-row-end: main-area-end;
+        grid-column-start: main-area-start;
+        grid-column-end: main-area-end;
+        overflow: auto;
+        margin: 0 12px 12px 12px;
+        background-color: green;
+    }
+
+    .main-container .ext-area {
+        /* height 还受到 operate-area 区域内容影响 */
+        height: 236px;
+        grid-row-start: ext-area-start;
+        grid-row-end: ext-area-end;
+        grid-column-start: ext-area-start;
+        grid-column-end: ext-area-end;
+        overflow: auto;
+        background-color: blue;
+        /* margin 由脚本控制，如果没有内容则设置为0 */
+        margin: 0 12px 18px 12px;
+    }
+
+    .main-container .operate-area {
+        /* width 由内容元素控制 */
+        height: 36px;
+        background-color: red;
+        grid-row-start: operate-area-start;
+        grid-row-end: operate-area-end;
+        grid-column-start: operate-area-start;
+        grid-column-end: operate-area-end;
+        /* margin 由脚本控制，如果没有内容则设置为0 */
+        margin: 0 12px 18px 12px;
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        overflow: auto;
+    }
+
+    .main-container .right-side {
+        /* width 由内容元素控制 */
+        width: 336px;
+        background-color: red;
+        grid-row-start: right-side-start;
+        grid-row-end: right-side-end;
+        grid-column-start: right-side-start;
+        grid-column-end: right-side-end;
+        /* margin 由脚本控制，如果没有内容则设置为0 */
+        margin: 0 12px 18px 0;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        grid-template-areas:
+            "right-side-top"
+            "right-side-bottom"
+    }
+
+    .main-container .right-side-top {
+        grid-row-start: right-side-top-start;
+        grid-row-end: right-side-top-end;
+        grid-column-start: right-side-top-start;
+        grid-column-end: right-side-top-end;
+        background-color: chocolate;
+        overflow: auto;
+    }
+
+    .main-container .right-side-bottom {
+        /* height 由内容元素控制 */
+        height: 393px;
+        grid-row-start: right-side-bottom-start;
+        grid-row-end: right-side-bottom-end;
+        grid-column-start: right-side-bottom-start;
+        grid-column-end: right-side-bottom-end;
+        background-color: greenyellow;
+    }
+</style>
+
+<script>
+    function bottomSideChilrenChangedHandler(event) {
+        let container = document.querySelector('.main-container');
+        let mainArea = document.querySelector('.main-area');
+
+        if (event.relatedNode.scrollWidth > mainArea.offsetWidth) {
+            console.log('有滚动条');
+            if(container.className.search('grid1') >= 0)
+            {
+                container.className = container.className.replace('grid1', 'grid2');
+            }
+        }
+        else {
+            console.log('没有滚动条');
+            if(container.className.search('grid2') >= 0)
+            {
+                container.className = container.className.replace('grid2', 'grid1');
+            }
+        }
+    }
+
+    (function () {
+        window.onload = function () {
+            //判断left-side宽度
+            var leftSide = document.querySelector('.left-side');
+            var bottomSide = document.querySelector('.operate-area');
+
+            let addLeftBtn = document.getElementById('addToLeftSide');
+            addLeftBtn.addEventListener('click', () => {
+                let p = document.createElement('p');
+                p.innerHTML = "dsfsafa";
+                leftSide.appendChild(p);
+
+                let p2 = document.createElement('p');
+                p2.innerHTML = 'dsfsafasf';
+                bottomSide.appendChild(p2);
+            });
+
+            let removeLeftBtn = document.getElementById('removeFromLeftSide');
+            removeLeftBtn.addEventListener('click', () => {
+                if (leftSide.childNodes.length > 0) {
+                    leftSide.removeChild(leftSide.childNodes[0]);
+                }
+
+                if (bottomSide.childNodes.length > 0) {
+                    bottomSide.removeChild(bottomSide.childNodes[0]);
+                }
+            })
+
+
+            bottomSide.addEventListener('DOMNodeInserted', function (event) {
+                bottomSideChilrenChangedHandler(event);
+            });
+            bottomSide.addEventListener('DOMNodeRemoved', function (event) {
+                bottomSideChilrenChangedHandler(event);
+            });
+        }
+    })();
+</script>
+
+</html>
