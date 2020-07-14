@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/reset.scss">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="fixed"></div>
+    <div class="div1"></div>
+</body>
+<style>
+    .fixed {
+        width: 30%;
+        height: 30%;
+        background-color: red;
+        position: fixed;
+        z-index: 1;
+        left: calc(70% / 2);
+        top: calc(70% / 2);
+    }
+
+    .div1 {
+        width: 100px;
+        height: 100px;
+        z-index: 50000;
+        background-color: greenyellow;
+    }
+</style>
+
+</html>
