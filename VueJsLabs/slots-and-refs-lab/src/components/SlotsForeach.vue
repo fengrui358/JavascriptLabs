@@ -1,4 +1,5 @@
 <template>
+  <!-- slot名称中不能使用'-' -->
   <div class="container">
     <div>
       <!-- 3. ref1 通过v-if绑定slot1，可以挂载Dom -->
