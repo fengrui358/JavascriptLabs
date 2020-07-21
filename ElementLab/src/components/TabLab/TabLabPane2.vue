@@ -17,11 +17,11 @@ export default {
   created: function() {
     console.log("created2");
   },
-  beforeMounte: function() {
-    console.log("beforeMounte2");
+  beforeMount: function() {
+    console.log("beforeMount2");
   },
   mounted: function() {
-    console.log("TabLabPane2");
+    console.log("mounted TabLabPane2");
   },
   beforeDestroy: function() {
     console.log("beforeDestroy2");

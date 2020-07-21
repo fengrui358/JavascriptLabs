@@ -13,15 +13,18 @@ export default {
   },
   beforeCreate: function() {
     console.log("beforeCreate1");
+    this.$once("hook:beforeMount", () => {
+      console.log("hook:beforeMount");
+    });
   },
   created: function() {
     console.log("created1");
   },
-  beforeMounte: function() {
-    console.log("beforeMounte1");
+  beforeMount: function() {
+    console.log("beforeMount1");
   },
   mounted: function() {
-    console.log("TabLabPane1");
+    console.log("mounted TabLabPane1");
   },
   beforeDestroy: function() {
     console.log("beforeDestroy1");
