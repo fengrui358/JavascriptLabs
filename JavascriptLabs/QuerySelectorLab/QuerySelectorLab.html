@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="context">
+        <div id="element-1">
+            <div id="element-1.1"></div>
+            <div id="element-1.2"></div>
+        </div>
+        <div id="element-2">
+            <div id="element-2.1"></div>
+        </div>
+    </div>
+    <p>
+        Selected elements ids :
+        <span id="results"></span>
+    </p>
+</body>
+
+<script>
+    (function () {
+        let context = document.getElementById('context');
+        let selected = context.querySelector('div');
+
+        //1. 使用 querySelector 可以直接查找到内部的 Dom
+        document.getElementById('results').innerHTML = selected.getAttribute('id');
+
+        //2. 这种获取方式会包含自己
+        selected = context.querySelectorAll('div');
+        document.getElementById('results').innerHTML = Array.prototype.map.call(selected, function (element) {
+            return '#' + element.getAttribute('id');
+        }).join(', ');
+
+        //3. 这种获取方式会在自己的子集去找
+        selected = context.querySelectorAll(':scope>div');
+        document.getElementById('results').innerHTML = Array.prototype.map.call(selected, function (element) {
+            return '#' + element.getAttribute('id');
+        }).join(', ');
+    })();
+</script>
+
+</html>
