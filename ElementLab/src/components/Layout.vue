@@ -48,7 +48,16 @@
               <span slot="title">Navigation</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="Navigation-BadgeLab"  :route="{name: 'BadgeLab'}">BadgeLab2</el-menu-item>
+              <el-menu-item index="Navigation-BadgeLab" :route="{name: 'BadgeLab'}">BadgeLab</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="Others">
+            <template slot="title">
+              <i class="el-icon-menu"></i>
+              <span slot="title">Others</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="Others-PopoverLab" :route="{name: 'PopoverLab'}">PopoverLab</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

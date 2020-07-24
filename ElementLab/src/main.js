@@ -15,11 +15,13 @@ Vue.use(VueRouter)
 //2. 定义路由组件
 import TabLab from './components/TabLab'
 import BadgeLab from './components/BadgeLab'
+import PopoverLab from './components/PopoverLab'
 
 //3. 定义路由
 const routes = [
   { path: '/tablab', name: 'TabLab', component: TabLab },
-  { path: '/badgelab', name: 'BadgeLab', component: BadgeLab }
+  { path: '/badgelab', name: 'BadgeLab', component: BadgeLab },
+  { path: '/popoverlab', name: 'PopoverLab', component: PopoverLab },
 ]
 
 //4. 创建router实例，然后传入配置
