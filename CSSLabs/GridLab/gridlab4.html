@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/reset.scss">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="input">
+        </div>
+        <button class="s">S</button>
+        <button class="a">A</button>
+    </div>
+</body>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .container {
+        background-color: aqua;
+        width: 388px;
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+    }
+
+    .input {
+        height: 32px;
+        margin: 14px 0 14px 14px;
+        width: calc(100% - 14px);
+        background-color: brown;
+    }
+
+    .s {
+        width: 44px;
+        height: 32px;
+        background-color: rgba(0, 0, 255, 0.2);
+    }
+
+    .a {
+        width: 24px;
+        height: 24px;
+        margin: 0 24px 0 14px;
+        background-color: darkgoldenrod;
+    }
+</style>
+
+</html>
