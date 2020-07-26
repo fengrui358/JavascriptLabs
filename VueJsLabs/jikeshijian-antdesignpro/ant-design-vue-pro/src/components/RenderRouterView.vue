@@ -1,6 +1,11 @@
 <template>
-  <div id="app">
-    <a-button>按钮</a-button>
+  <div>
     <router-view></router-view>
   </div>
 </template>
+
+<script>
+export default {};
+</script>
+
+<style></style>
