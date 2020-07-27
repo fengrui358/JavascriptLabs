@@ -5,6 +5,7 @@ import App from './App.vue'
 import locale from 'element-ui/lib/locale/lang/en'
 import './assets/element-variables.scss'
 import VueRouter from 'vue-router'
+import clickoutside from 'element-ui/lib/utils/clickoutside'
 
 Vue.config.productionTip = false
 
@@ -29,6 +30,8 @@ const router = new VueRouter({
   mode: 'history',
   routes
 })
+
+Vue.directive('clickoutside', clickoutside)
 
 new Vue({
   router,

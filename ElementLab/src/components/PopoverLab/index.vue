@@ -1,5 +1,5 @@
 <template>
-  <div class="popover-lab">
+  <div class="popover-lab" v-clickoutside="handleClickoutside">
     <el-popover
       placement="top-start"
       title="标题"
@@ -43,10 +43,10 @@
 
     <!-- 自定义区 -->
     <div>
-      <div  style="width:100px; height:20px;background-color:red" ></div>
+      <div style="width:100px; height:20px;background-color:red"></div>
       <button @click="showCustomPopover = !showCustomPopover" v-popover:customPopover>custom</button>
     </div>
-    
+
     <el-popover
       ref="customPopover"
       :visible-arrow="false"
@@ -67,6 +67,11 @@ export default {
       visible: false,
       showCustomPopover: true,
     };
+  },
+  methods: {
+    handleClickoutside: function () {
+      console.log("handleClickoutside");
+    },
   },
 };
 </script>
