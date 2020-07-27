@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/reset.scss">
+    <title>Document</title>
+</head>
+<style>
+    #tooltip {
+        background-color: #333;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+
+    #arrow,
+    #arrow::before {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        z-index: -1;
+    }
+
+    #arrow::before {
+        content: '';
+        transform: rotate(45deg);
+        background: #333;
+    }
+
+    #tooltip[data-popper-placement^='top']>#arrow {
+        bottom: -4px;
+    }
+
+    #tooltip[data-popper-placement^='bottom']>#arrow {
+        top: -4px;
+    }
+
+    #tooltip[data-popper-placement^='left']>#arrow {
+        right: -4px;
+    }
+
+    #tooltip[data-popper-placement^='right']>#arrow {
+        left: -4px;
+    }
+</style>
+
+<body>
+    <button id="button" aria-describedby="tooltip">I'm a button</button>
+    <div id="tooltip" role="tooltip">I'm a tooltip<div id="arrow" data-popper-arrow></div>
+    </div>
+</body>
+<!-- Development version -->
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script>
+    const button = document.querySelector('#button');
+    const tooltip = document.querySelector('#tooltip');
+
+    // Pass the button, the tooltip, and some options, and Popper will do the
+    // magic positioning for you:
+    Popper.createPopper(button, tooltip, {
+        modifiers: [
+            {
+                name: 'offset',
+                options: {
+                    offset: [-20, -40]
+                }
+            }
+        ]
+    });
+</script>
+
+</html>
