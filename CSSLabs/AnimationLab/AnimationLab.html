@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/reset.scss">
+    <link rel="stylesheet" href="../../reset.scss">
     <title>Document</title>
 </head>
 
@@ -15,11 +15,63 @@
         margin: calc(100vh / 2 - 50px) 0 0 0;
         background-color: red;
         border-radius: 50px;
+
+        /* 动画时间和名字 */
+        animation-duration: 3s;
+        animation-name: move;
+
+        /* 重复指定次数动画 */
+        animation-iteration-count: 3;
+
+        /* 来回运动 */
+        animation-direction: alternate;
+    }
+
+    @keyframes move {
+        50% {
+            background-color: blue;
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+        }
+
+        to {
+            margin: 0 0 0 calc(100% - 100px);
+        }
     }
 </style>
 
 <body>
+    <ul id="output">
+
+    </ul>
     <div class="circle"></div>
 </body>
+
+<script>
+    var e = document.querySelector('.circle');
+    e.addEventListener("animationstart", listener);
+    e.addEventListener("animationend", listener);
+    e.addEventListener("animationstart", listener);
+
+
+    function listener(e) {
+        console.log(`animation event: ${JSON.stringify(e)}`);
+
+        var l = document.createElement("li");
+        switch (e.type) {
+            case "animationstart":
+                l.innerHTML = "Started: elapsed time is " + e.elapsedTime;
+                break;
+            case "animationend":
+                l.innerHTML = "Ended: elapsed time is " + e.elapsedTime;
+                break;
+            case "animationiteration":
+                l.innerHTML = "New loop started at time " + e.elapsedTime;
+                break;
+        }
+        document.getElementById("output").appendChild(l);
+    }
+</script>
 
 </html>
