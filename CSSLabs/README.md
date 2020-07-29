@@ -19,3 +19,8 @@
 ## FlowLab
 
 <https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Introduction#%E6%B5%AE%E5%8A%A8>
+
+## AnimationLab
+
+<https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations/Using_CSS_animations>
+<https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions>
