@@ -12,7 +12,14 @@
     .span {
         background-color: aqua;
         font-size: 14px;
+        display: flex;
+        align-items: center;
     }
+
+    /* .span>span {
+        align-content: center;
+    } */
+
     .icon {
         font-size: 24px;
         background-color: red;
@@ -20,10 +27,18 @@
 </style>
 
 <body>
-    <span class="span">
-        <i class="icon">8</i>
-        "你好，测试文本"
-    </span>
+    <div>
+        <span class="span">
+            <i class="icon">8</i>
+            "你好，测试文本"
+        </span>
+    </div>
+    <div>
+        <span class="span">
+            <i class="icon">8</i>
+            <span>"你好，测试文本"</span>
+        </span>
+    </div>
 </body>
 
 </html>
