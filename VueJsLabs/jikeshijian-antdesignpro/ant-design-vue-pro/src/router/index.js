@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import NotFound from "./views/Home.vue";
 
 Vue.use(VueRouter);
-
 const routes = [
   {
     path: "/user",
@@ -29,17 +29,33 @@ const routes = [
   },
   {
     path: "/",
-    component: () =>
-      import(/* webpackChunkName: "layout" */ "../layouts/BasicLayout")
+    redirect: "/dashboard"
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/dashboard",
+    name: "dashboard",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "layout" */ "../layouts/BasicLayout"),
+    children: [
+      {
+        path: "/dashboard/analysis",
+        name: "analysis",
+        component: () =>
+          import(
+            /* webpackChunkName: "dashboard" */ "../views/Dashboard/Analysis"
+          )
+      }
+    ]
+  },
+  {
+    path: "/form",
+    component: () =>
+      import(/* webpackChunkName: "form" */ "../views/Forms/BasicForm")
+  },
+  {
+    path: "*",
+    name: "404",
+    // component: NotFound
   }
 ];
 
