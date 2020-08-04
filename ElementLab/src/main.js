@@ -13,16 +13,17 @@ Vue.config.productionTip = false
 Vue.use(ElementUI, { locale })
 Vue.use(VueRouter)
 
-//2. 定义路由组件
-import TabLab from './components/TabLab'
-import BadgeLab from './components/BadgeLab'
-import PopoverLab from './components/PopoverLab'
+//2. 定义路由组件 （使用后面 import(/* webpackChunkName: 的方式可以不用声明导入组件）
+// import TabLab from './components/TabLab'
+// import BadgeLab from './components/BadgeLab'
+// import PopoverLab from './components/PopoverLab'
 
 //3. 定义路由
 const routes = [
-  { path: '/tablab', name: 'TabLab', component: TabLab },
-  { path: '/badgelab', name: 'BadgeLab', component: BadgeLab },
-  { path: '/popoverlab', name: 'PopoverLab', component: PopoverLab },
+  { path: '/tablab', name: 'TabLab', component: () => import(/* webpackChunkName: "labs" */ './components/TabLab') },
+  { path: '/badgelab', name: 'BadgeLab', component: () => import(/* webpackChunkName: "labs" */ './components/BadgeLab') },
+  { path: '/popoverlab', name: 'PopoverLab', component: () => import(/* webpackChunkName: "labs" */ './components/PopoverLab') },
+  { path: '/treelab', name: 'TreeLab', component: () => import(/* webpackChunkName: "labs" */ './components/TreeLab') },
 ]
 
 //4. 创建router实例，然后传入配置

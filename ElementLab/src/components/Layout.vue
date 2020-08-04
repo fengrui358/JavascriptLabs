@@ -35,6 +35,9 @@
               <i class="el-icon-document"></i>
               <span slot="title">Data</span>
             </template>
+            <el-menu-item-group>
+              <el-menu-item index="Data-TreeLab" :route="{name: 'TreeLab'}">TreeLab</el-menu-item>
+            </el-menu-item-group>
           </el-submenu>
           <el-submenu index="Notice">
             <template slot="title">
