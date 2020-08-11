@@ -31,6 +31,17 @@
       内部使用对象绑定
       <prop-component2 v-for="item in datas" :key="item.id" :item="item"></prop-component2>
     </div>
+    <div class="div4">
+      $attrs 及 $listens 高级测试
+      <prop-attrs
+        v-for="item in datas"
+        :key="item.id"
+        :id="item.id"
+        :name="item.name"
+        :is-selected="item.isSelected"
+        @selectedChanged="selectedChanged"
+      ></prop-attrs>
+    </div>
   </div>
 </template>
 
@@ -38,13 +49,15 @@
 import PropComponent from "./PropComponent";
 import PropComponent2 from "./PropComponent2";
 import PropInput from "./PropInput";
+import PropAttrs from "./PropAttrs";
 
 export default {
   name: "PropsBind",
   components: {
     PropComponent,
     PropComponent2,
-    PropInput
+    PropInput,
+    PropAttrs
   },
   data: function() {
     return {
@@ -102,6 +115,11 @@ export default {
 }
 .div3 {
   border: 2px solid brown;
+  min-height: 200px;
+  margin: 5px;
+}
+.div4 {
+  border: 2px solid blueviolet;
   min-height: 200px;
   margin: 5px;
 }
