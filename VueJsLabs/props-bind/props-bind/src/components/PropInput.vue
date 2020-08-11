@@ -9,11 +9,7 @@
       :value="isSelected"
       @input="$emit('update:isSelected', $event.target.checked)"
     />-->
-    <input
-      type="checkbox"
-      :checked="isSelected"
-      @input="selectedChanged"
-    />
+    <input type="checkbox" :checked="isSelected" @input="selectedChanged" />
   </div>
 </template>
 

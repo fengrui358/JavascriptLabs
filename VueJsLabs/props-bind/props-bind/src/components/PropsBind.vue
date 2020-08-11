@@ -1,17 +1,23 @@
 <template>
   <div>
     <div class="div1">
-      原始数据展示
-      <prop-component
-        v-for="item in datas"
-        :key="item.id"
-        :id="item.id"
-        :name="item.name"
-        :is-selected="item.isSelected"
-      ></prop-component>
+      <div>
+        原始数据展示
+        <prop-component
+          v-for="item in datas"
+          :key="item.id"
+          :id="item.id"
+          :name="item.name"
+          :is-selected="item.isSelected"
+        ></prop-component>
+      </div>
+      <div>
+        Bind子组件Props，使用整体绑定
+        <prop-component v-for="item in datas" :key="item.id" v-bind="item"></prop-component>
+      </div>
     </div>
     <div class="div2">
-      Bind子组件Props，修改同步
+      Bind子组件Props，修改同步，但是如果元素数据对象中没有指定属性，后面再添加属性会绑定不上
       <prop-input
         v-for="item in datas"
         :key="item.id"
@@ -21,18 +27,23 @@
         @selectedChanged="selectedChanged"
       ></prop-input>
     </div>
-    <div class="div3"></div>
+    <div class="div3">
+      内部使用对象绑定
+      <prop-component2 v-for="item in datas" :key="item.id" :item="item"></prop-component2>
+    </div>
   </div>
 </template>
 
 <script>
 import PropComponent from "./PropComponent";
+import PropComponent2 from "./PropComponent2";
 import PropInput from "./PropInput";
 
 export default {
   name: "PropsBind",
   components: {
     PropComponent,
+    PropComponent2,
     PropInput
   },
   data: function() {
@@ -45,7 +56,8 @@ export default {
         },
         {
           id: 2,
-          name: "test2"
+          name: "test2",
+          isSelected: false
         },
         {
           id: 3,
@@ -65,8 +77,12 @@ export default {
   methods: {
     selectedChanged: function(id, val) {
       let item = this.datas.filter(s => s.id === id);
-      if (item !== null) {
-        item.isSelected = val;
+      if (item.length > 0) {
+        if (item[0].isSelected === undefined) {
+          this.$set(item[0], "isSelected", val);
+        } else {
+          item[0].isSelected = val;
+        }
       }
     }
   }
