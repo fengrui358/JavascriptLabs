@@ -1,31 +1,24 @@
 <template>
   <div class="prop-attrs">
-    {{ id + ':' }}
+    {{ id + ":" }}
     <slot></slot>
-    <input type="checkbox" :checked="isSelected" @input="selectedChanged" />
+    <prop-attrs-bottom-checkbox v-bind="$attrs" v-on="$listeners" :id="id"></prop-attrs-bottom-checkbox>
   </div>
 </template>
 
 <script>
+import PropAttrsBottomCheckbox from "./PropAttrsBottomCheckbox";
+
 export default {
   name: "PropAttrs",
+  components: {
+    PropAttrsBottomCheckbox
+  },
   props: {
     id: {
       type: Number,
       default: null
-    },
-    isSelected: {
-      type: Boolean,
-      default: false
-    }
-  },
-  methods: {
-    selectedChanged(event) {
-      this.$emit("selectedChanged", this.id, event.target.checked);
     }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
