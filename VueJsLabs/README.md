@@ -24,6 +24,10 @@ Vue 路由学习 <https://router.vuejs.org/zh/guide/#html>
 
 极客时间 vuejs 课程随堂练习
 
+## mixins-lab
+
+测试混入mixins
+
 ## slots-and-refs-lab
 
 插槽和组件元素引用相关联系
