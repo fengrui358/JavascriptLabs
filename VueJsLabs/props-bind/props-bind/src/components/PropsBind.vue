@@ -36,7 +36,7 @@
       <prop-attrs
         v-for="item in datas"
         :key="item.id"
-        :id="item.id"
+        :id.sync="item.id"
         :name="item.name"
         :is-selected="item.isSelected"
         @selectedChanged="selectedChanged"

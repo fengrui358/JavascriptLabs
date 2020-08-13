@@ -1,6 +1,7 @@
 <template>
   <div class="prop-attrs">
-    {{ id + ":" }}
+    <!-- input使用新的值更新 -->
+    <input type="text" :value="id" @input="$emit('update:id', $event.target.value)" />:
     <slot></slot>
     <prop-attrs-bottom-checkbox v-bind="$attrs" v-on="$listeners" :id="id"></prop-attrs-bottom-checkbox>
   </div>
