@@ -1,4 +1,5 @@
 <!-- https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform -->
+<!-- https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform-function -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +10,84 @@
     <title>Document</title>
 </head>
 
-<body>
+<style>
+    body {
+        display: flex;
+        flex-wrap: wrap;
+    }
 
+    div {
+        width: 200px;
+        height: 200px;
+        /* margin: 40px; */
+        transform-origin: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 1s;
+    }
+
+    div:hover {
+        transition: all 2s;
+    }
+
+    .div1 {
+        background-color: red;
+    }
+
+    .div1:hover {
+        transform: rotate(-130deg);
+    }
+
+    .div2 {
+        background-color: rosybrown;
+    }
+
+    .div2:hover {
+        transform: scale(2);
+    }
+
+    .div3 {
+        background-color: royalblue;
+    }
+
+    .div3:hover {
+        transform: skewX(50deg) skewY(50deg);
+    }
+
+    .div4 {
+        background-color: saddlebrown;
+    }
+
+    .div4:hover {
+        transform: translateX(200px) translateY(400px)
+    }
+
+    .div5 {
+        background-color: skyblue;
+    }
+
+    .div5:hover {
+        transform: translateX(-200px) translateY(40px) rotate(-130deg) skewX(50deg) skewY(50deg) scale(1.5);
+    }
+</style>
+
+<body>
+    <div class="div1">
+        rotate
+    </div>
+    <div class="div2">
+        scale
+    </div>
+    <div class="div3">
+        skewX
+    </div>
+    <div class="div4">
+        skewY
+    </div>
+    <div class="div5">
+        混合
+    </div>
 </body>
 
 </html>
