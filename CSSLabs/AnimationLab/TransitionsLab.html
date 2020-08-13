@@ -1,6 +1,8 @@
 <!-- https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions -->
 <!-- 可动画属性列表 -->
 <!-- https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_animated_properties -->
+<!-- time function -->
+<!-- https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition-timing-function -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,9 +13,32 @@
     <link rel="stylesheet" href="../../reset.scss">
     <title>Document</title>
 </head>
+<style>
+    .box {
+        border-style: solid;
+        border-width: 1px;
+        display: block;
+        width: 100px;
+        height: 100px;
+        background-color: #0000FF;
+        /* -webkit-transition: width 2s, height 2s,
+            background-color 2s, -webkit-transform 2s; */
+        transition: width 1.2s, height 1.2s, background-color 6s, transform 6s;
+    }
+
+    .box:hover {
+        background-color: #FFCCCC;
+        width: 200px;
+        height: 300px;
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        transition: width 4s, height 4s, background-color 4s, transform 4s;
+    }
+</style>
 
 <body>
-
+    <div class="box"></div>
+    <p>盒子的多个属性一起动画: width, height, background-color, transform. 将光标悬停在盒子上查看动画。</p>
 </body>
 
 </html>
