@@ -60,6 +60,9 @@
               <span slot="title">Others</span>
             </template>
             <el-menu-item-group>
+              <el-menu-item index="Others-DialogLab" :route="{name: 'DialogLab'}">DialogLab</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group>
               <el-menu-item index="Others-PopoverLab" :route="{name: 'PopoverLab'}">PopoverLab</el-menu-item>
             </el-menu-item-group>
           </el-submenu>

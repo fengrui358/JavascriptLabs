@@ -24,6 +24,7 @@ const routes = [
   { path: '/badgelab', name: 'BadgeLab', component: () => import(/* webpackChunkName: "labs" */ './components/BadgeLab') },
   { path: '/popoverlab', name: 'PopoverLab', component: () => import(/* webpackChunkName: "labs" */ './components/PopoverLab') },
   { path: '/treelab', name: 'TreeLab', component: () => import(/* webpackChunkName: "labs" */ './components/TreeLab') },
+  { path: '/dialoglab', name: 'DialogLab', component: () => import(/* webpackChunkName: "labs" */ './components/DialogLab') },
 ]
 
 //4. 创建router实例，然后传入配置
