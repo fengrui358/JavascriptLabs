@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import NotFound from "./views/Home.vue";
+import NotFound from "../views/404.vue";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 Vue.use(VueRouter);
 const routes = [
@@ -55,7 +57,7 @@ const routes = [
   {
     path: "*",
     name: "404",
-    // component: NotFound
+    component: NotFound
   }
 ];
 
@@ -64,5 +66,14 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+router.beforeEach((to, from, next) => {
+  NProgress.start();
+  next();
+});
+
+router.afterEach(()=>{
+  NProgress.done();
+})
 
 export default router;
