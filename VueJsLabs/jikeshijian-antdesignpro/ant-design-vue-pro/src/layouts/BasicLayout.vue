@@ -1,15 +1,16 @@
 <template>
-  <div :class="[`nav-theme-${navTheme}`,`nav-Layout-${navLayout}`]">
+  <div :class="[`nav-theme-${navTheme}`, `nav-Layout-${navLayout}`]">
     <a-layout id="components-layout-demo-side" style="min-height: 100vh">
       <a-layout-sider
         v-if="navLayout === 'left'"
         :theme="navTheme"
         :trigger="null"
         v-model="collapsed"
+        width="256"
         collapsible
       >
         <div class="logo">Ant Design Vue Pro</div>
-        <SiderMenu></SiderMenu>
+        <SiderMenu :theme="navTheme"></SiderMenu>
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">

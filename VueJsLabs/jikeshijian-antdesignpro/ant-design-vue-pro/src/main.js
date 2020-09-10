@@ -6,7 +6,7 @@ import Vue from "vue";
 //import Button from "ant-design-vue/lib/button";
 
 // 3. 使用babel插件实现按需引入组件 https://www.antdv.com/docs/vue/introduce-cn/#%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD
-import { Button, Layout, Icon, Drawer, Radio } from "ant-design-vue";
+import { Button, Layout, Icon, Drawer, Radio, Menu } from "ant-design-vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -25,6 +25,7 @@ Vue.use(Layout);
 Vue.use(Icon);
 Vue.use(Drawer);
 Vue.use(Radio);
+Vue.use(Menu);
 
 new Vue({
   router,
