@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="original-div"></div>
+    <div class="property-div"></div>
+    <div class="proxy-div"></div>
+
+    <div class="proxy-array-div"></div>
+</body>
+
+<script>
+    let originalObj = {
+        a: 1
+    }
+    let propertyObj = {
+        __value: 1,
+        a: 1
+    }
+    let proxyObj = {
+        a: 1
+    }
+
+    function iife() {
+        let originalDiv = document.getElementsByClassName('original-div')[0];
+        let propertyDiv = document.getElementsByClassName('property-div')[0];
+        let proxyDiv = document.getElementsByClassName('proxy-div')[0];
+        let proxyArrayDiv = document.getElementsByClassName('proxy-array-div')[0];
+
+        //准备
+        let propertyObjAProperty = {
+            configurable: true,
+            enumerable: true,
+            get: function () {
+                return this.__value;
+            },
+            set: function (val) {
+                this.__value += val;
+            }
+        }
+
+        Object.defineProperty(propertyObj, 'a', propertyObjAProperty);
+
+        run(originalDiv, originalObj);
+        run(propertyDiv, propertyObj);
+    }
+
+    iife();
+
+    function run(htmlDom, targetObj) {
+        const start = new Date()
+
+        for (let index = 0; index < 1000000; index++) {
+            targetObj.a = 1;
+        }
+
+        const time = new Date() - start;
+        htmlDom.appendChild(document.createTextNode(`${htmlDom.className} end, the value is ${targetObj.a}, the time consume is ${time}`));
+    }
+</script>
+
+</html>
