@@ -1,8 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import NotFound from "../views/404.vue";
+import Forbidden from '../views/403.vue'
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import findLast from 'lodash/findLast';
+import { isLogin, check } from "../utils/auth";
 
 Vue.use(VueRouter);
 const routes = [
@@ -32,6 +35,7 @@ const routes = [
   },
   {
     path: "/",
+    meta: { authority: ['user', 'admin'] },
     redirect: "/dashboard"
   },
   {
@@ -54,9 +58,10 @@ const routes = [
   },
   {
     path: "/form",
-    meta: { icon: "form", title: "表单" },
+    meta: { icon: "form", title: "表单", authority: ['admin'] },
     name: "form",
-    component: { render: h => h("router-view") },
+    component: () =>
+      import(/* webpackChunkName: "layout" */ "../layouts/BasicLayout"),
     children: [
       {
         path: "/form/basic-form",
@@ -95,6 +100,12 @@ const routes = [
     ]
   },
   {
+    path: "/403",
+    name: "403",
+    hideInMenu: true,
+    component: Forbidden
+  },
+  {
     path: "*",
     name: "404",
     hideInMenu: true,
@@ -111,6 +122,20 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     NProgress.start();
+  }
+  debugger;
+  const record = findLast(to.matched, record => record.meta.authority);
+  if (record && !check(record.meta.authority)) {
+    if (!isLogin() && to.path !== '/user/login') {
+      next({ path: '/user/login' })
+    }
+  }
+  else if (to.path != '/403') {
+    next({
+      path: "/403"
+    })
+
+    NProgress.done();
   }
 
   next();

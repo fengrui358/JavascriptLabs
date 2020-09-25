@@ -63,7 +63,7 @@ export default {
       routes.forEach(item => {
         if (item.name && !item.hideInMenu) {
           this.openKeysMap[item.path] = parentKeys;
-          this.selectKeysMap[item.path] = [item.path || selectedKey];
+          this.selectKeysMap[item.path] = [selectedKey || item.path];
 
           const newItem = { ...item };
           delete newItem.children;
