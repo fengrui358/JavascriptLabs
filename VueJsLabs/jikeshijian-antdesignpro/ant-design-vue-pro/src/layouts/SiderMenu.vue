@@ -1,6 +1,10 @@
 <template>
   <div>
-    <a-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsed">
+    <a-button
+      type="primary"
+      style="margin-bottom: 16px"
+      @click="toggleCollapsed"
+    >
       <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
     </a-button>
     <a-menu
@@ -13,7 +17,7 @@
         <a-menu-item
           v-if="!item.children"
           :key="item.path"
-          @click="$router.push({path: item.path, query: $route.query})"
+          @click="$router.push({ path: item.path, query: $route.query })"
         >
           <a-icon :type="item.meta.icon" v-if="item.meta.icon" />
           <span>{{ item.meta.title }}</span>
@@ -26,6 +30,7 @@
 
 <script>
 import SubMenu from "./SubMenu";
+import { check } from "../utils/auth";
 
 export default {
   components: { SubMenu },
@@ -60,7 +65,11 @@ export default {
     getMenuData(routes = [], parentKeys = [], selectedKey) {
       const menuData = [];
 
-      routes.forEach(item => {
+      for (let item of routes) {
+        if (item.meta && item.meta.authority && !check(item.meta.authority)) {
+          break;
+        }
+
         if (item.name && !item.hideInMenu) {
           this.openKeysMap[item.path] = parentKeys;
           this.selectKeysMap[item.path] = [selectedKey || item.path];
@@ -89,7 +98,7 @@ export default {
         ) {
           menuData.push(...this.getMenuData(item.children));
         }
-      });
+      }
 
       return menuData;
     }

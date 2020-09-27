@@ -6,6 +6,7 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import findLast from 'lodash/findLast';
 import { isLogin, check } from "../utils/auth";
+import { notification } from 'ant-design-vue';
 
 Vue.use(VueRouter);
 const routes = [
@@ -103,7 +104,7 @@ const routes = [
     path: "/403",
     name: "403",
     hideInMenu: true,
-    component: Forbidden
+    component: Forbidden,
   },
   {
     path: "*",
@@ -123,19 +124,22 @@ router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     NProgress.start();
   }
-  debugger;
   const record = findLast(to.matched, record => record.meta.authority);
   if (record && !check(record.meta.authority)) {
     if (!isLogin() && to.path !== '/user/login') {
       next({ path: '/user/login' })
     }
-  }
-  else if (to.path != '/403') {
-    next({
-      path: "/403"
-    })
-
-    NProgress.done();
+    else if (to.path != '/403') {
+      notification.error({
+        message: '403',
+        description:
+          'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      });
+      next({
+        path: "/403"
+      })
+      NProgress.done();
+    }
   }
 
   next();
