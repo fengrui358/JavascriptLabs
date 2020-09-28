@@ -10,6 +10,8 @@ import { Button, Layout, Icon, Drawer, Radio, Menu } from "ant-design-vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import Authorized from './components/Authorized'; //权限组件，优点灵活，缺点是需要嵌套，写法繁琐
+import Auth from './directives/auth'; //权限指令，优点是使用简单，缺点是只只会在开始渲染时执行一次，无法后期动态变更
 
 // 1. 全局引入ant-design样式
 //import "ant-design-vue/dist/antd.less";
@@ -26,6 +28,8 @@ Vue.use(Icon);
 Vue.use(Drawer);
 Vue.use(Radio);
 Vue.use(Menu);
+Vue.component('Authorized', Authorized);
+Vue.use(Auth);
 
 new Vue({
   router,
