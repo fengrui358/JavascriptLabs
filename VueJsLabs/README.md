@@ -35,3 +35,7 @@ Vue 路由学习 <https://router.vuejs.org/zh/guide/#html>
 ## props-bind
 
 测试父组件子组件通过 Props 传参，测试$attrs和$listeners 的实际作用
+
+## store-lab
+
+多组件共享同一响应式实体Demo
