@@ -1,7 +1,7 @@
 <template>
   <div>
-    {{ data.str1 }}
-    <input v-model="data.str1" />
+    {{ k.str1 }}
+    <input v-model="k.str1" />
     <button @click="btnHandler">触发</button>
   </div>
 </template>
@@ -11,17 +11,13 @@ import data from "../common/commonstore";
 
 export default {
   data: function () {
-    return data;
+    return { k : data };
   },
   methods: {
     btnHandler: function () {
-      this.data.str1 = (new Date()).toLocaleTimeString();
+      console.log(data === this.k);
 
-      if (this.data == data) {
-        console.log("data数据对象相等");
-      } else {
-        console.log("data数据对象不相等");
-      }
+      this.k.str1 = new Date().toLocaleTimeString();
     },
   },
 };

@@ -39,3 +39,7 @@ Vue 路由学习 <https://router.vuejs.org/zh/guide/#html>
 ## store-lab
 
 多组件共享同一响应式实体Demo
+
+## vuex-lab
+
+测试vuex
