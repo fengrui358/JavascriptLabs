@@ -13,14 +13,57 @@
 
     <script>
         class OriginalObj {
+            static _staticTestProperty = "staticTestProperty";
+
             constructor() {
-                this.testProperty = "Hello"
+                this._testProperty = "Hello"
+                console.log("construct " + OriginalObj.name);
+            }
+
+            get testProperty(){
+                return this._testProperty;
+            }
+
+            set testProperty(value){
+                this._testProperty = value;
+            }
+
+            get testProperty2(){
+                return this._testProperty2;
+            }
+
+            set testProperty2(value){
+                this._testProperty2 = value;
+            }
+
+            //静态属性不能封装
+            static get _staticTestProperty(){
+                return "hello " + _staticTestProperty;
+            }
+
+            toString(){
+                return this.testProperty + " toString " + this.testProperty2;
             }
         }
 
         (function () {
+            debugger;
+            let x = OriginalObj.prototype;
+            console.log(x); //{constructor: ƒ, toString: ƒ}
+
+            let y = Object.getOwnPropertyNames(OriginalObj.prototype);
+            console.log(y); //["constructor", "testProperty", "testProperty2", "toString"]
+
             let originalObj = new OriginalObj();
-            console.log(originalObj.testProperty);
+            console.log(originalObj.testProperty); //Hello
+
+            console.log(originalObj.toString());
+
+            let descriptor = Object.getOwnPropertyDescriptor(OriginalObj.prototype, "testProperty");
+            console.log(descriptor);
+
+            //静态属性
+            console.log(OriginalObj._staticTestProperty);
         })();
     </script>
 </body>
