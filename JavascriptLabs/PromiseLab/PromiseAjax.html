@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function getHttpResponse(url, method = "GET") {
+            return new Promise((resolved, rejected) => {
+                let xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState !== 4) {
+                        return;
+                    }
+
+                    if (xhttp.status === 200) {
+                        resolved(xhttp.response);
+                    } else {
+                        rejected(new Error(xhttp.statusText));
+                    }
+                }
+
+                xhttp.open(method, url);
+                xhttp.responseType = "json";
+                xhttp.setRequestHeader("Accept", "application/json");
+                xhttp.send();
+            });
+        }
+
+        (async function () {
+            try {
+                let response = await getHttpResponse("http://www.baidu.com");
+                console.log(response);
+            }
+            catch (error) {
+                console.log(error);
+            }
+
+        })();
+    </script>
+</body>
+
+</html>
