@@ -13,10 +13,13 @@
 
     <script>
         class OriginalObj {
+            #privateField;
+
             static _staticTestProperty = "staticTestProperty";
 
             constructor() {
                 this._testProperty = "Hello"
+                this.#privateField = "privateField"
                 console.log("construct " + OriginalObj.name);
             }
 
@@ -42,11 +45,11 @@
             }
 
             toString(){
-                return this.testProperty + " toString " + this.testProperty2;
+                return this.testProperty + " toString " + this.testProperty2 + " " + this.#privateField;
             }
         }
 
-        (function () {
+        function initTest(){
             debugger;
             let x = OriginalObj.prototype;
             console.log(x); //{constructor: ƒ, toString: ƒ}
@@ -64,6 +67,14 @@
 
             //静态属性
             console.log(OriginalObj._staticTestProperty);
+        }
+
+        (async function () {
+            initTest();
+
+            console.log("--------------正式代码--------------")
+
+            let wrapObj = {} ;
         })();
     </script>
 </body>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function getPromise() {
+            return new Promise(function (resolved, rejected) {
+                setTimeout(() => {
+                    if (Math.floor(Math.random() * 10) < 5) {
+                        resolved(" promise resolved. ");
+                    } else {
+                        rejected(" promise rejected. ");
+                    }
+                }, 1000);
+            });
+        }
+
+        (function () {
+            console.log(new Date() + " run start ");
+
+            let promise1Result = getPromise().then(s => {
+                console.log(new Date() + " success " + s);
+            }, error => {
+                console.log(new Date() + " error " + error);
+            });
+
+            console.log(new Date() + " run end " + promise1Result);
+        })();
+
+        (async function () {
+            console.log(new Date() + " run2 start ");
+
+            try{
+                let s = await getPromise();
+                console.log(new Date() + " success2 " + s);
+            }
+            catch(error){
+                console.log(new Date() + " error2 " + error);
+            }
+
+            console.log(new Date() + " run2 end ");
+        })();
+    </script>
+</body>
+
+</html>
