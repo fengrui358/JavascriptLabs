@@ -23,34 +23,37 @@
                 console.log("construct " + OriginalObj.name);
             }
 
-            get testProperty(){
+            get testProperty() {
                 return this._testProperty;
             }
 
-            set testProperty(value){
+            set testProperty(value) {
                 this._testProperty = value;
             }
 
-            get testProperty2(){
+            get testProperty2() {
                 return this._testProperty2;
             }
 
-            set testProperty2(value){
+            set testProperty2(value) {
                 this._testProperty2 = value;
             }
 
             //静态属性不能封装
-            static get _staticTestProperty(){
+            static get _staticTestProperty() {
                 return "hello " + _staticTestProperty;
             }
 
-            toString(){
+            toString() {
                 return this.testProperty + " toString " + this.testProperty2 + " " + this.#privateField;
+            }
+
+            sum(a, b) {
+                return a + b;
             }
         }
 
-        function initTest(){
-            debugger;
+        function initTest() {
             let x = OriginalObj.prototype;
             console.log(x); //{constructor: ƒ, toString: ƒ}
 
@@ -67,14 +70,22 @@
 
             //静态属性
             console.log(OriginalObj._staticTestProperty);
+            return originalObj;
         }
 
         (async function () {
-            initTest();
+            const originalObj = initTest();
 
             console.log("--------------正式代码--------------")
 
-            let wrapObj = {} ;
+            let wrapObj = {};
+            Object.getOwnPropertyNames(OriginalObj.prototype).filter(s => s !== "constructor").forEach(s => {
+                debugger;
+                //只要有get方法就一定是属性
+                var des = Object.getOwnPropertyDescriptor(OriginalObj.prototype, s);
+            });
+
+            debugger;
         })();
     </script>
 </body>
