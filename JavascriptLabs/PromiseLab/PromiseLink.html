@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function getNow() {
+            return (new Date()).toString();
+        }
+
+        function getInnerPromise() {
+            return new Promise((resolve, reject) => {
+                console.log(getNow() + "getInnerPromise start");
+                setTimeout(() => {
+                    console.log(getNow() + "getInnerPromise reject start");
+                    return reject(new Error('fail'));
+                    console.log(getNow() + "getInnerPromise reject end");
+                }, 3000);
+                console.log(getNow() + "getInnerPromise end");
+            });
+        }
+
+        function getOuterPromise(promise) {
+            let p = new Promise((resolve, reject) => {
+                console.log(getNow() + "getOuterPromise start");
+                setTimeout(() => {
+                    console.log(getNow() + "getOuterPromise resolve start");
+                    //resolve 要依赖内部的 promise 的状态，需要内部的状态也为 resolved
+                    //return 防止后面的代码继续执行
+                    return resolve(promise);
+                    console.log(getNow() + "getOuterPromise resolve end");
+                }, 1000);
+                console.log(getNow() + "getOuterPromise end");
+            });
+
+            return p;
+        }
+
+        (function () {
+            let p = getOuterPromise(getInnerPromise());
+
+            p.then(result => {
+                console.log(getNow() + "success get result");
+                console.log(result);
+            }).catch(error => {
+                console.log(getNow() + "fail get result");
+                console.log(error);
+            });
+        })();
+    </script>
+</body>
+
+</html>
