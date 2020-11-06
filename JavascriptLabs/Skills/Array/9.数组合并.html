@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        (function () {
+            //普通数组
+            console.log([1, 2, 3, 4].concat([5, 6])); //[1,2,3,4,5,6]
+            console.log([...[1, 2, 3, 4], ...[4, 5]]); //[1,2,3,4,4,5]
+            const arrA = [1, 2], arrB = [3, 4]
+            const arr3 = Array.prototype.concat(arrA, arrB);
+            console.log(arr3); //arrA值为[1,2,3,4]
+        })();
+
+        (function () {
+            //数组对象
+            const arr4 = [{ age: 1 }].concat([{ age: 2 }])
+            const arr5 = [...[{ age: 1 }], ...[{ age: 2 }]]
+            console.log(arr4) //[ { age: 1 }, { age: 2 } ]
+            console.log(arr5) // [ { age: 1 }, { age: 2 } ]
+        })();
+    </script>
+</body>
+
+</html>
