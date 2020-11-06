@@ -80,12 +80,9 @@
 
             let wrapObj = {};
             Object.getOwnPropertyNames(OriginalObj.prototype).filter(s => s !== "constructor").forEach(s => {
-                debugger;
                 //只要有get方法就一定是属性
                 var des = Object.getOwnPropertyDescriptor(OriginalObj.prototype, s);
             });
-
-            debugger;
         })();
     </script>
 </body>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        (function () {
+            //普通数组
+            console.log(Math.max(...[1, 2, 3, 4])); //4
+            console.log(Math.max.apply(globalThis, [1, 2, 3, 4])); //4
+            let max = [1, 2, 3, 4].reduce((pre, cur) => {
+                return cur > pre ? cur : pre;
+                //return Math.max(cur, pre);
+            });
+
+            console.log(max);
+        })();
+
+        (function () {
+            //数组对象
+            const arr = [{ id: 1, name: 'jack' }, { id: 2, name: 'may' }, { id: 3, name: 'shawn' }, { id: 4, name: 'tony' }];
+            let max = arr.reduce((pre, cur) => {
+                return pre.id > cur.id ? pre : cur;
+            });
+
+            //第一种情况，筛选出id最大的对象
+            console.log(max);
+
+            //第二种情况，筛选出最大的id值
+            console.log(Math.max(...arr.map(s=>s.id)));
+        })();
+    </script>
+</body>
+
+</html>
