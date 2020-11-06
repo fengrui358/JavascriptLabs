@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        (function () {
+            //普通数组
+            console.log([1, 2, 3].every(s => s > 2)); //false
+        })();
+
+        (function () {
+            //数组对象
+            const arr = [{ age: 3 }, { age: 4 }, { age: 5 }]
+            console.log(arr.every(s => s.age > 2)); //true
+        })();
+    </script>
+</body>
+
+</html>
