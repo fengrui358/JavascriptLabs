@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        (function () {
+            //普通数组
+            let sum = [1, 2, 3, 4].reduce((pre, cur) => {
+                return cur + pre;
+            });
+
+            console.log(sum);
+        })();
+
+        (function () {
+            //数组对象
+            let sum = [{ age: 1 }, { age: 2 }, { age: 2 }].reduce((pre, cur) => {
+                return pre + cur.age;
+            }, 0);
+
+            console.log(sum);
+        })();
+    </script>
+</body>
+
+</html>
