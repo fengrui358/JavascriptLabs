@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        (function () {
+            const { info: { dec } } = { name: '张三', age: 13, info: { dec: '描述1', info: '信息' } }
+            console.log(dec) // 描述1
+        })();
+    </script>
+</body>
+
+</html>
