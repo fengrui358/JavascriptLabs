@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        (function () {
+            const arr = [1, 2]; //后面一定要加分号，因为不加解释器会认为在读数组
+            [arr[1], arr[0]] = [arr[0], arr[1]];
+
+            console.log(arr); // [2,1]
+        })();
+    </script>
+</body>
+
+</html>
