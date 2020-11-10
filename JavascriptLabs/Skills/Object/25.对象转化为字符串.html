@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        (function () {
+            console.log('the Math object:' + Math.ceil(3.4));                // "the Math object:4"
+            console.log('the JSON object:' + { name: '曹操' });              // "the JSON object:[object Object]"
+
+            console.log(2 * { valueOf: () => '4' });                   // 8
+            console.log('J' + { toString: () => 'ava' });              // "Java"
+
+            //当+用在连接字符串时，当一个对象既有toString方法又有valueOf方法时候，JS通过盲目使用valueOf方法来解决这种含糊;
+            console.log('' + { toString: () => 'S', valueOf: () => 'J' });  //J
+        })();
+    </script>
+</body>
+
+</html>
