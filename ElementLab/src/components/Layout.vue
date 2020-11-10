@@ -29,6 +29,9 @@
               <i class="el-icon-menu"></i>
               <span slot="title">Form</span>
             </template>
+            <el-menu-item-group>
+              <el-menu-item index="Form-InputLab" :route="{name: 'InputLab'}">InputLab</el-menu-item>
+            </el-menu-item-group>
           </el-submenu>
           <el-submenu index="Data">
             <template slot="title">
