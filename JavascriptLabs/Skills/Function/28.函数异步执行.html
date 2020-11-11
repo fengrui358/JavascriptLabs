@@ -42,6 +42,22 @@
             console.log(g.next(2)); // { value: undefined, done: true }
             // 因为最后一行 return y 被执行完成,所以done 为 true
         })();
+
+        (function () {
+            //Async/Await
+            function getSomething() {
+                return "something";
+            }
+            async function testAsync() {
+                return Promise.resolve("hello async");
+            }
+            async function test() {
+                const v1 = await getSomething();
+                const v2 = await testAsync();
+                console.log(v1, v2); //something 和 hello async
+            }
+            test();
+        })();
     </script>
 </body>
 
