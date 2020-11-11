@@ -11,8 +11,8 @@
 
     <script>
         (function () {
-            function reverseStr(str){
-                
+            function reverseStr(str = '') {
+                return str.split('').reduceRight((pre, cur) => pre + cur);
             }
 
             const str = "reduce123";
