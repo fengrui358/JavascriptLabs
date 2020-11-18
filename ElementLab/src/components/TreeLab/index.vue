@@ -51,11 +51,11 @@ export default {
         children: [
           {
             id: 4,
-            label: "二级 1-1",
+            label: "三级 1-1- 三级 1-1-1 三级 1-1-1 v 三级 1-1-1  三级 1-1-1 三级 1-1-1 v1 三级 1-1- 三级 ",
             children: [
               {
                 id: 9,
-                label: "三级 1-1-1",
+                label: "三级 1-1- 三级 1-1-1 三级 1-1-1 v 三级 1-1-1  三级 1-1-1 三级 1-1-1 v1 三级 1-1- 三级",
               },
               {
                 id: 10,
@@ -159,6 +159,10 @@ export default {
 </script>
 
 <style>
+.custom-tree-container {
+  width: 600px;
+}
+
 .custom-tree-node {
   flex: 1;
   display: flex;
@@ -166,5 +170,17 @@ export default {
   justify-content: space-between;
   font-size: 14px;
   padding-right: 8px;
+  
 }
+
+.block {
+  overflow: auto;
+}
+
+.el-tree {
+  /* 设置为inline-block 可以让节点将树的宽度撑开 */
+  display: inline-block;
+}
+
+
 </style>
