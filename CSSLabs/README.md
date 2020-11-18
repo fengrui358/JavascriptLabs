@@ -24,3 +24,7 @@
 
 <https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations/Using_CSS_animations>
 <https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions>
+
+## PseudoClasses
+
+<https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes>
