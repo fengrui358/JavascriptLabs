@@ -158,7 +158,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .custom-tree-container {
   width: 600px;
 }
@@ -170,7 +170,10 @@ export default {
   justify-content: space-between;
   font-size: 14px;
   padding-right: 8px;
-  
+
+  >span:first-of-type {
+    margin-right: 8px;
+  }
 }
 
 .block {
