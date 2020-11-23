@@ -22,3 +22,9 @@ const end = process.hrtime.bigint();
 console.log(end);
 
 console.log(`耗时：${end - start}`);
+
+let os = require('os')
+console.log(os.arch())
+
+let events = require('events').EventEmitter
+console.log(events)
