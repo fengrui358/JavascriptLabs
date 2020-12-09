@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div>
+            <span class="item">
+                <i>
+                    <p>
+                        longgroupnametestlonggroupnametestlonggroupnametes
+                    </p>
+                </i>
+            </span>
+        </div>
+        <div>
+            <span>
+                <i>
+                    longgroupnametestlonggroupnametestlonggroupnametes
+                </i>
+            </span>
+        </div>
+    </div>
+</body>
+
+<style>
+    .container {
+        width: 250px;
+        overflow: auto;
+        height: 800px;
+    }
+
+    .item>i>p {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
+
+</html>
