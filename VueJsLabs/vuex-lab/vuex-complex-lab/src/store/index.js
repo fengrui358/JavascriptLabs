@@ -8,6 +8,7 @@ import rootStoreTypes from '@/constants/common/rootStoreTypes'
 Vue.use(Vuex)
 const store = new Vuex.Store({
   modules,
+  strict: true,
   state: {
     name: '',
     count: 0
