@@ -19,7 +19,7 @@
     <div>
       <label>读取modul1中的innerObj中的部分值</label>
       <span>{{ innerObj != null ? (innerObj.testObj != null ? innerObj.testObj.a : null) : null }}</span>
-      <label style="margin-left: 15px">修改modul1中的SET_TESTTRE</label>
+      <label style="margin-left: 15px">修改modul1中的SET_TESTTRE(实验结果，这种方式会报错)</label>
       <input type="button" @click="changeInnerObjValue" value="修改指定值" />
     </div>
   </div>
@@ -65,7 +65,7 @@ export default {
     changeInnerObjValue: function () {
       //修改整个对象
       console.log(this.$store);
-      //this.$store.module1.innerObj.testObj.a = "free3"
+      this.$store.state.module1.innerObj.testObj.a = "free3"
     },
   },
 };
