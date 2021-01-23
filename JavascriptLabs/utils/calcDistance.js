@@ -13,5 +13,5 @@ function calcDistance(lat1, lng1, lat2, lng2) {
 
 (function () {
     let distance = calcDistance(39.899106, 116.486733, 39.899189, 116.479259);
-    console.log(distance)
+    console.log(distance) //正确输出值应该是五六百米
 })()
