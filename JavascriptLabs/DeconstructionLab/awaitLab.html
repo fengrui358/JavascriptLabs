@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let x = { a: { b: '选中前b', c: '选中前c' } }
+
+        async function awaitFunction() {
+            setTimeout(() => {
+                x = { a: { b: '选中后b', c: '选中后c' } }
+                console.log('切换对象完成')
+            }, 1500)
+
+            return new Promise(resolve => {
+                //切换对象（模拟手动操作，在完成接口前返回）
+                x = { a: { b: '选中后b', c: '选中后c' } }
+
+                setTimeout(() => {
+                    console.log('resolve end')
+                    resolve({ b: '返回结果b' })
+                }, 3000)
+            })
+        }
+
+        (async function () {
+            console.log('调用接口', x)
+            let { b, c = x.a.c, d = x.a } = await awaitFunction()
+
+            console.log(b, c, d)
+        })()
+    </script>
+</body>
+
+</html>
