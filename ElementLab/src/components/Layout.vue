@@ -31,6 +31,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="Form-InputLab" :route="{name: 'InputLab'}">InputLab</el-menu-item>
+              <el-menu-item index="Form-FormLab" :route="{name: 'FormLab'}">FormLab</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="Data">

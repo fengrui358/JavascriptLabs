@@ -1,18 +1,40 @@
 <template>
   <div>
     <!-- Table -->
-    <el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
+    <el-button type="text" @click="dialogTableVisible = true"
+      >打开嵌套表格的 Dialog</el-button
+    >
 
-    <el-dialog title="收货地址" :visible.sync="dialogTableVisible">
-      <el-table :data="gridData">
-        <el-table-column property="date" label="日期" width="150"></el-table-column>
-        <el-table-column property="name" label="姓名" width="200"></el-table-column>
+    <el-dialog
+      title="收货地址"
+      :visible.sync="dialogTableVisible"
+      custom-class="dialog-class"
+    >
+      <el-table :data="gridData" class="table-class">
+        <el-table-column
+          property="date"
+          label="日期"
+          width="150"
+        ></el-table-column>
+        <el-table-column
+          property="name"
+          label="姓名"
+          width="200"
+        ></el-table-column>
         <el-table-column property="address" label="地址"></el-table-column>
       </el-table>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false"
+          >确 定</el-button
+        >
+      </div>
     </el-dialog>
 
     <!-- Form -->
-    <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
+    <el-button type="text" @click="dialogFormVisible = true"
+      >打开嵌套表单的 Dialog</el-button
+    >
 
     <!-- 测试 destroy-on-close 没有用不知道为什么 -->
     <el-dialog
@@ -37,7 +59,9 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+          <el-button type="primary" @click="dialogFormVisible = false"
+            >确 定</el-button
+          >
         </div>
       </div>
     </el-dialog>
@@ -87,8 +111,8 @@ export default {
     };
   },
   computed: {
-    ifVisible: function() {
-      console.log(`if---${this.dialogFormVisible}`)
+    ifVisible: function () {
+      console.log(`if---${this.dialogFormVisible}`);
       return this.dialogFormVisible;
     },
     testNumber: function () {
@@ -105,3 +129,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.dialog-class {
+  .table-class {
+    width: auto;
+  }
+}
+</style>
