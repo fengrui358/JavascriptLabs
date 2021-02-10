@@ -21,6 +21,7 @@
         width: 100px;
         height: 100px;
         background-color: #0000FF;
+        overflow: hidden;
         /* -webkit-transition: width 2s, height 2s,
             background-color 2s, -webkit-transform 2s; */
         transition: width 1.2s, height 1.2s, background-color 6s, transform 6s;
@@ -31,14 +32,15 @@
         width: 200px;
         height: 300px;
         -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
+        transform: skew(-30deg, 20deg);
         transition: width 4s, height 4s, background-color 4s, transform 4s;
     }
 </style>
 
 <body>
-    <div class="box"></div>
+    <div class="box"><input type="text"></div>
     <p>盒子的多个属性一起动画: width, height, background-color, transform. 将光标悬停在盒子上查看动画。</p>
+    
 </body>
 
 </html>
