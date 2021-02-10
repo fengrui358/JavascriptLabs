@@ -11,6 +11,7 @@ const Bar = { template: '<div>bar</div>' }
 // 我们晚点再讨论嵌套路由。
 const routes = [
     { path: '/ComputedLab', name: 'ComputedLab', component: () => import(/* webpackChunkName: "views" */ '../views/ComputedLab') },
+    { path: '/TransitionLab', name: 'TransitionLab', component: () => import(/* webpackChunkName: "views" */ '../views/TransitionLab') },
     { path: '/bar', component: Bar }
 ]
 
