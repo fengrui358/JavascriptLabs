@@ -40,6 +40,7 @@
 <script>
 import DynamicComponent1 from "./DynamicComponent1";
 import DynamicComponent2 from "./DynamicComponent2";
+import _ from 'lodash'
 
 export default {
   data: function () {
@@ -70,6 +71,9 @@ export default {
     },
     remove: function () {
       this.items.splice(this.randomIndex(), 1);
+    },
+    shuffle: function () {
+      this.items = _.shuffle(this.items);
     },
   },
 };
@@ -102,16 +106,26 @@ export default {
   transform: translateY(100%);
 }
 
-.list-item {
+.list-complete-item {
   display: inline-block;
   margin-right: 10px;
 }
-.list-enter-active, .list-leave-active {
+.list-complete-enter-active,
+.list-complete-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-to
+.list-complete-enter, .list-complete-leave-to
 /* .list-leave-active for below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
+// <transition-group> 组件还有一个特殊之处。不仅可以进入和离开动画，还可以改变定位。
+// 要使用这个新功能只需了解新增的 v-move class，它会在元素的改变定位的过程中应用。
+// 像之前的类名一样，可以通过 name attribute 来自定义前缀，也可以通过 move-class attribute 手动设置。
+.list-complete-move {
+  transition: all 1s;
 }
 </style>
