@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 export default {
   data: function () {
     return {
@@ -27,7 +27,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("module1", ["testStr"]),
+    ...mapState('module1', ['testStr']),
     listItem: function () {
       if (this.list.length > 0) {
         return this.list[0].name;
@@ -42,7 +42,7 @@ export default {
   },
   mounted: function () {
     for (let index = 0; index < 3; index++) {
-      this.list.push({ index: index, name: "name" + index });
+      this.list.push({ index: index, name: 'name' + index });
     }
   },
   methods: {

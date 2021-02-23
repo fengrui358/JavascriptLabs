@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 import modules from './modules'
 
@@ -19,7 +19,7 @@ const store = new Vuex.Store({
     }
   },
   getters: {
-    info: function(state){
+    info: function (state) {
       return `name--${state.name}  count--${state.count}`
     }
   }

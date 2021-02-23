@@ -23,24 +23,48 @@ const mutations = {
     [module1StoreTypes.SET_LISTITEM]: function (state, item) {
         for (let index = 0; index < state.list.length; index++) {
             const element = state.list[index];
-            if (element.name === item.name) {
-                element.index = item.index
+            if (element.index === item.index) {
+                Object.assign(element, item)
                 break
             }
         }
-
-        //修改完并不会影响getter属性排序
     },
     [module1StoreTypes.ADD_LISTITEM]: function (state, item) {
         state.list.push(item)
         console.log(state.list)
+    },
+    [module1StoreTypes.REMOVE_LISTITEM]: function (state, item) {
+        let index = -1
+        for (let i = 0; i < state.list.length; i++) {
+            if (item === state.list[i]) {
+                index = i
+                break
+            }
+        }
+
+        if (index >= 0) {
+            state.list.splice(index, 1)
+        }
     }
 }
 
 const getters = {
     listIndexs: function (state) {
-        console.log('读取listIndexs')
-        return state.list.map(s => "name:" + s.name).sort().reverse()
+        console.log('读取listIndexs');
+        return state.list.map(s => "index:" + s.index + "  name:" + s.name + "   order:" + s.order).sort((a, b) => {
+            return a.order - b.order
+        }).reverse();
+    },
+    getItemsByType: function (state) {
+        return function (type = 'odd') {
+            //根据索引筛选奇数或者偶数
+            if (type == 'odd') {
+                return state.list.filter(s => s.index % 2 == 1)
+            }
+            else {
+                return state.list.filter(s => s.index % 2 == 0)
+            }
+        }
     }
 }
 

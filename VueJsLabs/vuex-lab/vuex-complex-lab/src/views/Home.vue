@@ -32,12 +32,12 @@
     </div>
     <div>
       <label>读取modul1中的list</label>
-      <p v-for="item in listIndexs" :key="item">
+      <p v-for="item in listIndexs" :key="item.index">
         {{ item }}
       </p>
       <span>
         <input type="button" value="添加" @click="addItem" />
-        <input type="button" value="删除" />
+        <input type="button" value="删除" @click="removeItem" />
         <input type="button" value="修改" @click="updateItem" />
       </span>
     </div>
@@ -45,12 +45,13 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from "vuex";
-import rootStoreTypes from "@/constants/common/rootStoreTypes";
-import module1StoreTypes from "@/constants/common/module1StoreTypes";
+import { mapState, mapMutations, mapGetters } from 'vuex';
+import rootStoreTypes from '@/constants/common/rootStoreTypes';
+import module1StoreTypes from '@/constants/common/module1StoreTypes';
+import { v4 as uuid } from 'uuid';
 
 export default {
-  name: "Home",
+  name: 'Home',
   computed: {
     testInfo: {
       get: function () {
@@ -60,52 +61,70 @@ export default {
         this.$store.commit(rootStoreTypes.CHANGE_NAME, newVal);
       },
     },
-    ...mapState("module1", ["testStr", "innerObj", "list"]),
-    ...mapGetters("module1", ["listIndexs"]),
+    getItems() {
+      let r = Math.random(2);
+      return this.getItemsByType(r < 1 ? 'odd' : 'even');
+    },
+    ...mapState('module1', ['testStr', 'innerObj', 'list']),
+    ...mapGetters('module1', ['listIndexs', 'getItemsByType']),
   },
   mounted: function () {
     this[module1StoreTypes.SET_INNEROBJ]({
-      test: "free",
-      testObj: { a: "free" },
+      test: 'free',
+      testObj: { a: 'free' },
     });
 
     //在list中加入测试数据
     this[module1StoreTypes.SET_LIST]([
-      { index: 5, name: "5" },
-      { index: 3, name: "3" },
+      { index: 1, order: 1, name: uuid() },
+      { index: 2, order: 2, name: uuid() },
+      { index: 3, order: 3, name: uuid() },
     ]);
   },
   methods: {
-    ...mapMutations("module1", [
+    ...mapMutations('module1', [
       module1StoreTypes.SET_TESTTRE,
       module1StoreTypes.SET_INNEROBJ,
       module1StoreTypes.SET_LIST,
       module1StoreTypes.SET_LISTITEM,
       module1StoreTypes.ADD_LISTITEM,
+      module1StoreTypes.REMOVE_LISTITEM,
     ]),
     changeInnerObj: function () {
       //修改整个对象
       this[module1StoreTypes.SET_INNEROBJ]({
-        test: "free2",
-        testObj: { a: "free2" },
+        test: 'free2',
+        testObj: { a: 'free2' },
       });
     },
     changeInnerObjValue: function () {
       //修改整个对象
       console.log(this.$store);
-      this.$store.state.module1.innerObj.testObj.a = "free3";
+      this.$store.state.module1.innerObj.testObj.a = 'free3';
     },
     updateItem: function () {
-      let item = { ...this.list[0] };
-      //将第一个的索引5改成1
-      item.index = 1;
+      let maxIndex = Math.max(this.list.map((s) => s.index));
+      let randomIndex = Math.floor(Math.random() * this.list.length);
+      let item = {...this.list[randomIndex]}
+      item.key = Math.floor(Math.random(maxIndex))
+      item.name = uuid()
+
       this[module1StoreTypes.SET_LISTITEM](item);
     },
     addItem: function () {
-      let item = { ...this.list[0] };
-      item.index = item.index + Math.floor(Math.random() * 10);
-      item.name = "新加" + item.index;
+      let maxIndex = Math.max(...this.list.map((s) => s.index));
+      let item = {};
+      item.index = maxIndex + 1;
+      item.order = item.index;
+      item.name = uuid();
       this[module1StoreTypes.ADD_LISTITEM](item);
+    },
+    removeItem() {
+      //删除一个随机数
+      if (this.list.length > 0) {
+        let index = Math.floor(Math.random() * this.list.length);
+        this[module1StoreTypes.REMOVE_LISTITEM](this.list[index]);
+      }
     },
   },
 };
