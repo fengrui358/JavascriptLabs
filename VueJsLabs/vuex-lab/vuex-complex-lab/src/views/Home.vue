@@ -32,14 +32,17 @@
     </div>
     <div>
       <label>读取modul1中的list</label>
-      <p v-for="item in listIndexs" :key="item.index">
-        {{ item }}
+      <p v-for="item in listIndexs" :key="item.index" :style="{color: item.isChanging ? 'red' : 'black'}">
+        {{ `index:${item.index}   name:${item.name}   order:${item.order}` }}
       </p>
       <span>
         <input type="button" value="添加" @click="addItem" />
         <input type="button" value="删除" @click="removeItem" />
         <input type="button" value="修改" @click="updateItem" />
       </span>
+    </div>
+    <div>
+      
     </div>
   </div>
 </template>
@@ -76,9 +79,9 @@ export default {
 
     //在list中加入测试数据
     this[module1StoreTypes.SET_LIST]([
-      { index: 1, order: 1, name: uuid() },
-      { index: 2, order: 2, name: uuid() },
-      { index: 3, order: 3, name: uuid() },
+      { index: 1, order: 1, name: uuid(), isChanging: false },
+      { index: 2, order: 2, name: uuid(), isChanging: false },
+      { index: 3, order: 3, name: uuid(), isChanging: false },
     ]);
   },
   methods: {
@@ -103,13 +106,21 @@ export default {
       this.$store.state.module1.innerObj.testObj.a = 'free3';
     },
     updateItem: function () {
-      let maxIndex = Math.max(this.list.map((s) => s.index));
+      let maxIndex = Math.max(...this.list.map((s) => s.index));
       let randomIndex = Math.floor(Math.random() * this.list.length);
-      let item = {...this.list[randomIndex]}
-      item.key = Math.floor(Math.random(maxIndex))
-      item.name = uuid()
+      let item = { ...this.list[randomIndex] };
+      item.order = Math.floor(Math.random() * maxIndex);
+      item.isChanging = true;
+      item.name = uuid();
 
       this[module1StoreTypes.SET_LISTITEM](item);
+
+      setTimeout(() => {
+        let newItem = { ...item };
+        newItem.isChanging = false;
+
+        this[module1StoreTypes.SET_LISTITEM](newItem);
+      }, 800);
     },
     addItem: function () {
       let maxIndex = Math.max(...this.list.map((s) => s.index));

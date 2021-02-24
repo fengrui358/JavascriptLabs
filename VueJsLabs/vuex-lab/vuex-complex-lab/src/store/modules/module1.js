@@ -51,7 +51,7 @@ const mutations = {
 const getters = {
     listIndexs: function (state) {
         console.log('读取listIndexs');
-        return state.list.map(s => "index:" + s.index + "  name:" + s.name + "   order:" + s.order).sort((a, b) => {
+        return state.list.sort((a, b) => {
             return a.order - b.order
         }).reverse();
     },

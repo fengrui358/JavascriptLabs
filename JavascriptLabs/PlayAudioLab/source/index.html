@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    播放声音测试
+    <span id="time"></span>
+    <span id="result"></span>
+    <input value="手动播放" type="button" onclick="testPlay()">
+
+    <script>
+        function testPlay() {
+            console.log('播放')
+            let audio = new Audio("newAlarm.mp3")
+            audio.play()
+        }
+
+        var startTime = new Date();
+
+        (function () {
+            let timeDom = document.getElementById('time')
+            let maxSeconds = 3600 * 2
+
+            let audio = new Audio("newAlarm.mp3")
+
+            let interval = setInterval(() => {
+                let total = Math.floor((new Date() - startTime) / 1000)
+                if (total > maxSeconds) {
+                    clearInterval(interval);
+
+                    //播放声音
+                    audio.play().then(() => {
+                        document.getElementById('result').innerHTML = "播放成功"
+                    }).catch(() => {
+                        document.getElementById('result').innerHTML = "播放失败"
+                    })
+                }
+
+                timeDom.innerHTML = total + 's'
+            }, 1000)
+        })();
+    </script>
+</body>
+
+</html>
