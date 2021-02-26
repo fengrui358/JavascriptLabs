@@ -50,20 +50,21 @@ const mutations = {
 
 const getters = {
     listIndexs: function (state) {
-        console.log('读取listIndexs');
-        return state.list.sort((a, b) => {
+        return [...state.list].sort((a, b) => {
             return a.order - b.order
         }).reverse();
     },
     getItemsByType: function (state) {
         return function (type = 'odd') {
             //根据索引筛选奇数或者偶数
+            let result;
             if (type == 'odd') {
-                return state.list.filter(s => s.index % 2 == 1)
+                result = state.list.filter(s => s.order % 2 == 1)
             }
             else {
-                return state.list.filter(s => s.index % 2 == 0)
+                result = state.list.filter(s => s.order % 2 == 0)
             }
+            return result
         }
     }
 }

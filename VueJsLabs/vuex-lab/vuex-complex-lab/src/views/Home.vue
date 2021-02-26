@@ -32,18 +32,36 @@
     </div>
     <div>
       <label>读取modul1中的list</label>
-      <p v-for="item in listIndexs" :key="item.index" :style="{color: item.isChanging ? 'red' : 'black'}">
-        {{ `index:${item.index}   name:${item.name}   order:${item.order}` }}
-      </p>
+      <br />
+      <br />
       <span>
         <input type="button" value="添加" @click="addItem" />
         <input type="button" value="删除" @click="removeItem" />
         <input type="button" value="修改" @click="updateItem" />
       </span>
+      <div>
+        <p
+          v-for="item in listIndexs"
+          :key="item.index"
+          :style="{ color: item.isChanging ? 'red' : 'black' }"
+        >
+          {{ `index:${item.index}   name:${item.name}   order:${item.order}` }}
+        </p>
+      </div>
+      <br />
+      <label>通过函数读取modul1中的list</label>
+      <br />
+      <div>
+        <p
+          v-for="item in getItems"
+          :key="item.index"
+          :style="{ color: item.isChanging ? 'red' : 'black' }"
+        >
+          {{ `index:${item.index}   name:${item.name}   order:${item.order}` }}
+        </p>
+      </div>
     </div>
-    <div>
-      
-    </div>
+    <div></div>
   </div>
 </template>
 
@@ -115,12 +133,25 @@ export default {
 
       this[module1StoreTypes.SET_LISTITEM](item);
 
-      setTimeout(() => {
+      if (this.lastChangeInfo != null) {
+        let newItem = { ...this.lastChangeInfo.item };
+        newItem.isChanging = false;
+
+        this[module1StoreTypes.SET_LISTITEM](newItem);
+
+        clearTimeout(this.lastChangeInfo.lastTimeout);
+        this.lastChangeInfo = null;
+      }
+
+      let lastTimeout = setTimeout(() => {
         let newItem = { ...item };
         newItem.isChanging = false;
 
         this[module1StoreTypes.SET_LISTITEM](newItem);
+        this.lastChangeInfo = null;
       }, 800);
+
+      this.lastChangeInfo = { item: item, lastTimeout: lastTimeout };
     },
     addItem: function () {
       let maxIndex = Math.max(...this.list.map((s) => s.index));
@@ -128,6 +159,7 @@ export default {
       item.index = maxIndex + 1;
       item.order = item.index;
       item.name = uuid();
+      item.isChanging = false;
       this[module1StoreTypes.ADD_LISTITEM](item);
     },
     removeItem() {
