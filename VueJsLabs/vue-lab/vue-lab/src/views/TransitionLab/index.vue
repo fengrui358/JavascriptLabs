@@ -34,13 +34,21 @@
         </transition-group>
       </div>
     </div>
+    <div class="popover-div">
+      <el-button type="primary" @click="displayPopover = !displayPopover"
+        >测试弹窗动画</el-button
+      >
+      <transition name="popover-transition">
+        <div class="popover" v-show="displayPopover">测试窗体</div>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
 import DynamicComponent1 from "./DynamicComponent1";
 import DynamicComponent2 from "./DynamicComponent2";
-import _ from 'lodash'
+import _ from "lodash";
 
 export default {
   data: function () {
@@ -49,6 +57,7 @@ export default {
       dynamicComponent: "d1",
       items: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       nextNum: 10,
+      displayPopover: true,
     };
   },
   components: {
@@ -127,5 +136,34 @@ export default {
 // 像之前的类名一样，可以通过 name attribute 来自定义前缀，也可以通过 move-class attribute 手动设置。
 .list-complete-move {
   transition: all 1s;
+}
+
+.popover-div {
+  position: relative;
+  margin: 0 auto;
+  width: fit-content;
+  background-color: antiquewhite;
+  .el-button {
+    position: relative;
+    z-index: 2;
+  }
+  .popover {
+    position: absolute;
+    top: 40px;
+    overflow: hidden;
+    background-color: cadetblue;
+    z-index: 1;
+  }
+}
+
+.popover-transition-enter,
+.popover-transition-leave-to {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.popover-transition-enter-active,
+.popover-transition-leave-active {
+  transition: all 0.8s;
 }
 </style>
