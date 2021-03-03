@@ -88,4 +88,4 @@ app.use(mount('/', function (ctx) {
     ctx.response.body = fs.readFileSync(__dirname + '/index.html', 'utf-8');
 }));
 
-app.listen(80);
+app.listen(8080);
