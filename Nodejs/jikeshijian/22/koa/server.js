@@ -16,6 +16,12 @@ app.use(mount('/favicon.ico', function (ctx) {
 
 const gameKoa = new koa();
 
+//起始中间件
+gameKoa.use(async function (ctx, next) {
+    ctx.response.set('Access-Control-Allow-Origin','*')
+    await next();
+})
+
 //判定胜利中间件
 gameKoa.use(
     async function (ctx, next) {
