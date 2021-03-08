@@ -20,14 +20,14 @@
 
         function customizer(value) {
             if (window._.isElement(value)) {
-                let result = value.cloneNode(false)
+                let result = value.cloneNode(true)
                 cloneNodeBefore = result
 
                 return result
             }
         }
 
-        const el = window._.cloneWith(document.body, customizer)
+        const el = window._.cloneDeepWith(document.body, customizer)
 
         console.log(el === document.body)
         // => false
@@ -41,10 +41,10 @@
             return value
         }
         let input = { a: { x: 'abc' } }
-        let output = window._.cloneWith(input, customizer2)
+        let output = window._.cloneDeepWith(input, customizer2)
         console.log('input === output', input.a === output.a)
 
-        let output2 = window._.cloneWith(input)
+        let output2 = window._.cloneDeepWith(input)
         console.log('input === output2', input.a === output2.a)
     })()
 </script>
