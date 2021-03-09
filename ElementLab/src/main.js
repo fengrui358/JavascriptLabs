@@ -23,6 +23,7 @@ const routes = [
   { path: '/tablab', name: 'TabLab', component: () => import(/* webpackChunkName: "labs" */ './components/TabLab') },
   { path: '/badgelab', name: 'BadgeLab', component: () => import(/* webpackChunkName: "labs" */ './components/BadgeLab') },
   { path: '/popoverlab', name: 'PopoverLab', component: () => import(/* webpackChunkName: "labs" */ './components/PopoverLab') },
+  { path: '/tablelab', name: 'TableLab', component: () => import(/* webpackChunkName: "labs" */ './components/TableLab') },
   { path: '/treelab', name: 'TreeLab', component: () => import(/* webpackChunkName: "labs" */ './components/TreeLab') },
   { path: '/dialoglab', name: 'DialogLab', component: () => import(/* webpackChunkName: "labs" */ './components/DialogLab') },
   { path: '/inputLab', name: 'InputLab', component: () => import(/* webpackChunkName: "labs" */ './components/InputLab') },

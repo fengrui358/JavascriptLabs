@@ -40,6 +40,7 @@
               <span slot="title">Data</span>
             </template>
             <el-menu-item-group>
+              <el-menu-item index="Data-TableLab" :route="{name: 'TableLab'}">TableLab</el-menu-item>
               <el-menu-item index="Data-TreeLab" :route="{name: 'TreeLab'}">TreeLab</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
