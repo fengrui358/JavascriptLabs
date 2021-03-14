@@ -11,7 +11,8 @@ exports.add = function (a, b) {
 }
 
 exports.obj = { hello: 'world' }
-exports.obj2 = require('./lib/lib2')
+exports.obj2 = (require('./lib/lib2')).obj2
+exports.newclass = (require('./lib/lib2')).myclass
 
 setTimeout(()=>{
     console.log(`this === exporsts  ${this === exports}`)
@@ -19,4 +20,4 @@ setTimeout(()=>{
 }, 2000)
 
 //下面这一句会覆盖整个导出的对象
-module.exports = { override : true}
+//module.exports = { override : true}
