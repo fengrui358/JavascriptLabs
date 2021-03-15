@@ -52,6 +52,8 @@
 </template>
 
 <script>
+import Color from '../constants/enums/Color'
+
 export default {
   methods: {
     handleOpen(key, keyPath) {
@@ -61,5 +63,8 @@ export default {
       console.log(key, keyPath);
     },
   },
+  created(){
+    console.log(Color.enumFlagOf(1))
+  }
 };
 </script>
