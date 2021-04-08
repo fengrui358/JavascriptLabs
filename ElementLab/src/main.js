@@ -28,6 +28,7 @@ const routes = [
   { path: '/dialoglab', name: 'DialogLab', component: () => import(/* webpackChunkName: "labs" */ './components/DialogLab') },
   { path: '/inputLab', name: 'InputLab', component: () => import(/* webpackChunkName: "labs" */ './components/InputLab') },
   { path: '/formLab', name: 'FormLab', component: () => import(/* webpackChunkName: "labs" */ './components/FormLab') },
+  { path: '/formLab/datePickerLab', name: 'DatePickerLab', component: () => import(/* webpackChunkName: "labs" */ './components/FormLab/DatePickerLab') },
 ]
 
 //4. 创建router实例，然后传入配置
