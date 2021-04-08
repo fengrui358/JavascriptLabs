@@ -60,8 +60,8 @@ export default {
     };
   },
   created() {
-      const now = new Date()
-      this.date1 = [new Date(now.getFullYear(), now.getMonth(), now.getDate()), new Date()]
+      this.date1 = [moment().startOf('day').toDate(), moment().startOf('day').add(1, 'd').subtract(1, 's').toDate()]
+      console.log('初始化时间', this.date1)
   },
   methods: {
       changeHandler() {
