@@ -124,5 +124,5 @@ module.exports = {
         // }),
         new CleanWebpackPlugin()
     ].concat(htmlWebpackPlugins),
-    devtool: 'eval'
+    devtool: 'inline-source-map'
 }

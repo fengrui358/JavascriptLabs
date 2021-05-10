@@ -4,9 +4,11 @@ const path = require('path')
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const glob = require('glob')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 const setMPA = () => {
     const entry = {};
+    const htmlWebpackPlugins = [];
 
     const entryFiles = glob.sync(path.join(__dirname, './src/*/index.js'));
 
@@ -19,14 +21,31 @@ const setMPA = () => {
         const pageName = entryFile.match(/src\/(.*)\/index\.js/)[1];
         
         entry[pageName] = entryFile;
+        htmlWebpackPlugins.push(
+            new HtmlWebPackPlugin({
+                template: path.join(__dirname, `src/${pageName}/index.html`),
+                filename: `${pageName}.html`,
+                chunks: [pageName],
+                inject: true,
+                minify: {
+                    html5: true,
+                    collapseWhitespace: true,
+                    preserveLineBreaks: false,
+                    minifyCSS: true,
+                    minifyJS: true,
+                    removeComments: false,
+                }
+            }),
+        )
     });
 
     return {
-        entry
+        entry,
+        htmlWebpackPlugins
     }
 }
 
-const {entry} = setMPA();
+const {entry, htmlWebpackPlugins} = setMPA();
 
 module.exports = {
     entry: entry,
@@ -65,9 +84,10 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new CleanWebpackPlugin()
-    ],
+    ].concat(htmlWebpackPlugins),
     devServer: {
         contentBase: './dist',
         hot: true,
-    }
+    },
+    devtool: 'source-map'
 }
