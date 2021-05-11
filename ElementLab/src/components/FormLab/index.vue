@@ -102,3 +102,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+  .form-lab {
+    ::v-deep .el-form-item__label{
+      color: blue;
+    }
+  }
+</style>
