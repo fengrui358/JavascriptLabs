@@ -7,6 +7,7 @@
 <script>
 import MainPage from './views/MainPage.vue'
 import test from './requireContext'
+import funA from './requireContext/fun'
 
 export default {
   name: 'App',
@@ -19,6 +20,7 @@ export default {
     console.log('启动', test.b3())
     console.log('启动', test.b4())
     //console.log('启动', test.b5())
+    funA.a()
   }
 }
 </script>
