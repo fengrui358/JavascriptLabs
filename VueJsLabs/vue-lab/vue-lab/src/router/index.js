@@ -12,6 +12,7 @@ const Bar = { template: '<div>bar</div>' }
 const routes = [
     { path: '/ComputedLab', name: 'ComputedLab', component: () => import(/* webpackChunkName: "views" */ '../views/ComputedLab') },
     { path: '/TransitionLab', name: 'TransitionLab', component: () => import(/* webpackChunkName: "views" */ '../views/TransitionLab') },
+    { path: '/InjectProvideLab', name: 'InjectProvideLab', component: () => import(/* webpackChunkName: "views" */ '../views/InjectProvideLab') },
     { path: '/bar', component: Bar }
 ]
 

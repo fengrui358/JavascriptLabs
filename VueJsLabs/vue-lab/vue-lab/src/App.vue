@@ -5,24 +5,34 @@
 </template>
 
 <script>
-import MainPage from './views/MainPage.vue'
-import test from './requireContext'
-import funA from './requireContext/fun'
+import MainPage from "./views/MainPage.vue";
+import test from "./requireContext";
+import funA from "./requireContext/fun";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    MainPage
+    MainPage,
   },
-  created(){
-    console.log('启动', test.a1())
-    console.log('启动', test.a2())
-    console.log('启动', test.b3())
-    console.log('启动', test.b4())
+  data() {
+    return {
+      providerMsg2: "0",
+    };
+  },
+  provide () {
+    return {
+      provideMsg: this.provideMsg2,
+    };
+  },
+  created() {
+    console.log("启动", test.a1());
+    console.log("启动", test.a2());
+    console.log("启动", test.b3());
+    console.log("启动", test.b4());
     //console.log('启动', test.b5())
-    funA.a()
-  }
-}
+    funA.a();
+  },
+};
 </script>
 
 <style>

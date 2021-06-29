@@ -23,8 +23,10 @@
               >进入/离开 & 列表过渡</el-menu-item
             >
           </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
+          <el-menu-item-group :title="`Inject Provide ${providerMsg}`">
+            <el-menu-item index="1-3" :route="{ name: 'InjectProvideLab' }"
+              >Inject Provide</el-menu-item
+            >
           </el-menu-item-group>
           <el-submenu index="1-4">
             <template slot="title">选项4</template>
@@ -52,9 +54,20 @@
 </template>
 
 <script>
-import Color from '../constants/enums/Color'
+import Color from "../constants/enums/Color";
 
 export default {
+  data() {
+    return {
+      providerMsg: "1",
+    };
+  },
+  provide() {
+    return {
+      provideMsg: this.provideMsg,
+    };
+  },
+  // inject: ['provideMsg'],
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -63,8 +76,9 @@ export default {
       console.log(key, keyPath);
     },
   },
-  created(){
-    console.log(Color.enumFlagOf(1))
-  }
+  created() {
+    console.log('provideMsg', this.provideMsg);
+    console.log(Color.enumFlagOf(1));
+  },
 };
 </script>
