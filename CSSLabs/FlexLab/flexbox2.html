@@ -11,31 +11,41 @@
             padding: 0;
             margin: 0;
         }
+
         html {
             height: 100%;
         }
+
         body {
             height: 100%;
         }
-        .div1 {
+
+        .main-panel {
             display: flex;
             flex-direction: column;
             width: 600px;
             height: 100%;
             background-color: green;
         }
-        .div2 {
+
+        .header {
             height: 50px;
             background-color: red;
             flex-shrink: 0;
         }
 
-        .div3 {
+        .chat-area {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-list {
             flex: 1 1 auto;
             overflow: auto;
         }
 
-        .div4 {
+        .bottom {
             flex: 0 0 auto;
             height: 200px;
             background-color: blue;
@@ -50,28 +60,25 @@
 </head>
 
 <body>
-    <div class="div1">
-        <div class="div2">
+    <div class="main-panel">
+        <div class="header">
             header
         </div>
-        <div class="div3">
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
+        <div class="chat-area">
+            <div class="chat-list">
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+            </div>
+            <div class="bottom"> bottom </div>
         </div>
-        <div class="div4"> bottom </div>
     </div>
 </body>
 
