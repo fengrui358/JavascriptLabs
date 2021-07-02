@@ -7,6 +7,7 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const glob = require('glob')
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 
 const setMPA = () => {
     const entry = {};
@@ -21,7 +22,7 @@ const setMPA = () => {
         //     '/Users/free/Desktop/workspace/JavascriptLabs/WebpackLabs/jikeshijian/26multientry/src/search/index.js'
         //   ]
         const pageName = entryFile.match(/src\/(.*)\/index\.js/)[1];
-        
+
         entry[pageName] = entryFile;
         htmlWebpackPlugins.push(
             new HtmlWebPackPlugin({
@@ -47,7 +48,7 @@ const setMPA = () => {
     }
 }
 
-const {entry, htmlWebpackPlugins} = setMPA();
+const { entry, htmlWebpackPlugins } = setMPA();
 
 module.exports = {
     entry: entry,
@@ -91,7 +92,7 @@ module.exports = {
                         }
                     },
                     'less-loader',
-                    { 
+                    {
                         loader: 'px2rem-loader',
                         options: {
                             remUnit: 75,
@@ -122,6 +123,20 @@ module.exports = {
         //     assetNameRegExp: /\.css$/g,
         //     cssProcessor: require('cssnano')
         // }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new HtmlWebpackExternalsPlugin({
+            externals: [
+                {
+                    module: 'react',
+                    entry: 'https://unpkg.com/react@17/umd/react.production.min.js',
+                    global: 'React',
+                },
+                {
+                    module: 'react-dom',
+                    entry: 'https://unpkg.com/react-dom@17/umd/react-dom.production.min.js',
+                    global: 'ReactDOM',
+                },
+            ],
+        })
     ].concat(htmlWebpackPlugins)
 }
