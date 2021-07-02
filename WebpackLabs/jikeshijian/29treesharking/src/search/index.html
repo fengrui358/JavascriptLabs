@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%=require('raw-loader!../meta.html').default%>
+    <title>Document</title>
+    <script><%=require('raw-loader!babel-loader!../../node_modules/lib-flexible/flexible.js').default%></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/javascript" src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+</body>
+
+</html>
