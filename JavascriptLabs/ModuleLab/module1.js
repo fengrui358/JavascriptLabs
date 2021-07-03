@@ -8,4 +8,12 @@ function stringA() {
     setInterval(() => { console.log("模块1启动了定时器") }, 1000);
 })()
 
-export { stringA };
+let num = { 
+    info: 45
+}
+
+function setNum(num) {
+    num.info = num
+}
+
+export { stringA, num, setNum };
