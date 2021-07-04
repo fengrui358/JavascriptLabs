@@ -21,7 +21,11 @@ const setMPA = () => {
         //     '/Users/free/Desktop/workspace/JavascriptLabs/WebpackLabs/jikeshijian/26multientry/src/search/index.js'
         //   ]
         const pageName = entryFile.match(/src\/(.*)\/index\.js/)[1];
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> cb383e26e7c40baf9bbf5d483177c4ecc530b4a9
         entry[pageName] = entryFile;
         htmlWebpackPlugins.push(
             new HtmlWebPackPlugin({
@@ -47,7 +51,11 @@ const setMPA = () => {
     }
 }
 
+<<<<<<< HEAD
 const {entry, htmlWebpackPlugins} = setMPA();
+=======
+const { entry, htmlWebpackPlugins } = setMPA();
+>>>>>>> cb383e26e7c40baf9bbf5d483177c4ecc530b4a9
 
 module.exports = {
     entry: entry,
@@ -60,7 +68,11 @@ module.exports = {
         rules: [
             {
                 test: /.js$/,
+<<<<<<< HEAD
                 use: 'babel-loader'
+=======
+                use: ['babel-loader', 'eslint-loader']
+>>>>>>> cb383e26e7c40baf9bbf5d483177c4ecc530b4a9
             },
             {
                 test: /.css$/,
@@ -91,7 +103,11 @@ module.exports = {
                         }
                     },
                     'less-loader',
+<<<<<<< HEAD
                     { 
+=======
+                    {
+>>>>>>> cb383e26e7c40baf9bbf5d483177c4ecc530b4a9
                         loader: 'px2rem-loader',
                         options: {
                             remUnit: 75,
