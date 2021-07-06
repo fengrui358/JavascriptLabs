@@ -6,4 +6,4 @@ function b() {
     return 'this is func b'
 }
 
-export { a, b }
+export { a, b };
