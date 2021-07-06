@@ -49,6 +49,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "jslibcore": "^1.0.3",
     "lib-flexible": "^0.3.2"
   }
 }
