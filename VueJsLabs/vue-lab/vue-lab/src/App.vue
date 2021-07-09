@@ -8,6 +8,7 @@
 import MainPage from "./views/MainPage.vue";
 import test from "./requireContext";
 import funA from "./requireContext/fun";
+import test2 from 'jslibcore'
 
 export default {
   name: "App",
@@ -25,6 +26,7 @@ export default {
     };
   },
   created() {
+    console.log('test', test2.utils.largeNumber(56, 78))
     console.log("启动", test.a1());
     console.log("启动", test.a2());
     console.log("启动", test.b3());
