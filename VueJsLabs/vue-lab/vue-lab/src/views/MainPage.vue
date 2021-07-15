@@ -29,8 +29,8 @@
             >
           </el-menu-item-group>
           <el-submenu index="1-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
+            <template slot="title">表单</template>
+            <el-menu-item index="1-4-1" :route="{ name: 'InputLab' }">输入校验</el-menu-item>
           </el-submenu>
         </el-submenu>
         <el-menu-item index="2">

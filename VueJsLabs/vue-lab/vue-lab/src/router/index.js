@@ -13,6 +13,7 @@ const routes = [
     { path: '/ComputedLab', name: 'ComputedLab', component: () => import(/* webpackChunkName: "views" */ '../views/ComputedLab') },
     { path: '/TransitionLab', name: 'TransitionLab', component: () => import(/* webpackChunkName: "views" */ '../views/TransitionLab') },
     { path: '/InjectProvideLab', name: 'InjectProvideLab', component: () => import(/* webpackChunkName: "views" */ '../views/InjectProvideLab') },
+    { path: '/InputLab', name: 'InputLab', component: () => import(/* webpackChunkName: "views" */ '../views/InputLab') },
     { path: '/bar', component: Bar }
 ]
 
