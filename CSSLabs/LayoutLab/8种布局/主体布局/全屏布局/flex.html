@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../../reset.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        .fullscreen-layout {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh);
+        }
+    
+        main {
+            flex: auto;
+            /* flex: 1; */
+        }
+
+        .main-container {
+            overflow: hidden;
+            height: 100%;
+        }
+    
+        header {
+            height: 50px;
+            background-color: red;
+        }
+    
+        footer {
+            height: 80px;
+            background-color: green;
+        }
+    </style>
+
+    <div class="fullscreen-layout">
+        <header></header>
+        <main>
+            <div class="main-container"></div>
+        </main>
+        <footer></footer>
+    </div>
+</body>
+</html>

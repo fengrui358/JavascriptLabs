@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../../reset.css">
+    <title>Document</title>
+</head>
+
+<style>
+    .fullscreen-layout {
+        position: relative;
+        height: calc(100vh);
+    }
+
+    main,header,footer {
+        left: 0;
+        right: 0;
+        position: absolute;
+    }
+
+    header {
+        height: 50px;
+        background-color: red;
+    }
+
+    footer {
+        bottom: 0;
+        height: 80px;
+        background-color: green;
+    }
+</style>
+
+<body>
+    <div class="fullscreen-layout">
+        <header></header>
+        <main></main>
+        <footer></footer>
+    </div>
+</body>
+
+</html>
