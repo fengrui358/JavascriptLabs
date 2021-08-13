@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import * as leaflet from 'leaflet'
 import Map from './components/Map.vue'
 
 export default {
@@ -15,7 +14,7 @@ export default {
     Map,
   },
   created() {
-    console.log('leaflet', leaflet)
+    console.log('leaflet', window.L)
   }
 }
 </script>
