@@ -72,6 +72,15 @@
               <el-menu-item index="Others-PopoverLab" :route="{name: 'PopoverLab'}">PopoverLab</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
+          <el-submenu index="ThirdPart">
+            <template slot="title">
+              <i class="el-icon-menu"></i>
+              <span slot="title">ThirdPart</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="ThirdPart-QuillLab" :route="{name: 'QuillLab'}">QuillLab</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
         </el-menu>
       </el-aside>
       <el-main>
