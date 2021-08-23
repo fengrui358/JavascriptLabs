@@ -1,6 +1,7 @@
 // 数字枚举
 enum Role {
     Reporter = 3,
+    /** 开发人员 */
     Developer,
     Maintainer,
     Owner,
