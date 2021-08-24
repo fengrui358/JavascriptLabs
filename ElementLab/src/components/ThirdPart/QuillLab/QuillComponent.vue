@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-button type="primary" @click="save">保存</el-button>
     <div>
       <div ref="quillToolbar" class="ql-toolbar ql-snow">
         <!-- 字体和字体大小 -->
@@ -139,11 +140,14 @@
         </span>
         <!-- 清空样式 -->
         <span class="ql-formats">
-          <button class="ql-clean">
-          </button>
+          <button class="ql-clean"></button>
         </span>
       </div>
       <div ref="quillContainer"></div>
+    </div>
+    <!-- 测试还原显示 -->
+    <div>
+      <div ref="quillContainer2"></div>
     </div>
   </div>
 </template>
@@ -152,9 +156,14 @@
 import quill from "quill";
 
 export default {
+  data() {
+    return {
+      delta: null,
+    };
+  },
   mounted() {
     var options = {
-      debug: "info",
+      // debug: "info",
       modules: {
         toolbar: this.$refs.quillToolbar,
         // handlers: {
@@ -173,13 +182,29 @@ export default {
       theme: "snow",
     };
 
-    this.quillEl = new quill(this.$refs.quillContainer, options)
-  }
+    this.quillEl = new quill(this.$refs.quillContainer, options);
+
+    this.quillEl2 = new quill(this.$refs.quillContainer2, {
+      debug: "info",
+      placeholder: "请在次输入内容",
+      readOnly: true,
+      theme: "bubble",
+    });
+  },
+  methods: {
+    save() {
+      this.delta = JSON.stringify(this.quillEl.getContents().ops)
+      console.log('delta', this.delta)
+
+      this.quillEl2.setContents(JSON.parse(this.delta))
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "~quill/dist/quill.snow.css";
+@import "~quill/dist/quill.bubble.css";
 
 // 修改整体图标样式
 
@@ -190,7 +215,7 @@ export default {
 .ql-container {
   font-size: 14px;
   .ql-blank {
-    color: #C4CAD7;
+    color: #c4cad7;
     &::before {
       font-style: normal;
     }
