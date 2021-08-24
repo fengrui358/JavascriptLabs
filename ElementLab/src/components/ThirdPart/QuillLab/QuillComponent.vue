@@ -28,4 +28,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~quill/dist/quill.snow.css';
 </style>
