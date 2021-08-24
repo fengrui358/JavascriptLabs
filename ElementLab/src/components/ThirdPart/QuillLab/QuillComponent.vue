@@ -3,88 +3,15 @@
     <div>
       <div id="quill-toolbar-container" class="ql-toolbar ql-snow">
         <span class="ql-formats">
-          <span class="ql-font ql-picker"
-            ><span
-              class="ql-picker-label"
-              tabindex="0"
-              role="button"
-              aria-expanded="false"
-              aria-controls="ql-picker-options-0"
-              ><svg viewBox="0 0 18 18">
-                <polygon
-                  class="ql-stroke"
-                  points="7 11 9 13 11 11 7 11"
-                ></polygon>
-                <polygon
-                  class="ql-stroke"
-                  points="7 7 9 5 11 7 7 7"
-                ></polygon></svg></span
-            ><span
-              class="ql-picker-options"
-              aria-hidden="true"
-              tabindex="-1"
-              id="ql-picker-options-0"
-              ><span tabindex="0" role="button" class="ql-picker-item"></span
-              ><span
-                tabindex="0"
-                role="button"
-                class="ql-picker-item"
-                data-value="serif"
-              ></span
-              ><span
-                tabindex="0"
-                role="button"
-                class="ql-picker-item"
-                data-value="monospace"
-              ></span></span></span
-          ><select class="ql-font" style="display: none">
+          <select class="ql-font">
             <option selected="selected"></option>
             <option value="serif"></option>
             <option value="monospace"></option>
           </select>
-          <span class="ql-size ql-picker"
-            ><span
-              class="ql-picker-label"
-              tabindex="0"
-              role="button"
-              aria-expanded="false"
-              aria-controls="ql-picker-options-1"
-              ><svg viewBox="0 0 18 18">
-                <polygon
-                  class="ql-stroke"
-                  points="7 11 9 13 11 11 7 11"
-                ></polygon>
-                <polygon
-                  class="ql-stroke"
-                  points="7 7 9 5 11 7 7 7"
-                ></polygon></svg></span
-            ><span
-              class="ql-picker-options"
-              aria-hidden="true"
-              tabindex="-1"
-              id="ql-picker-options-1"
-              ><span
-                tabindex="0"
-                role="button"
-                class="ql-picker-item"
-                data-value="small"
-              ></span
-              ><span tabindex="0" role="button" class="ql-picker-item"></span
-              ><span
-                tabindex="0"
-                role="button"
-                class="ql-picker-item"
-                data-value="large"
-              ></span
-              ><span
-                tabindex="0"
-                role="button"
-                class="ql-picker-item"
-                data-value="huge"
-              ></span></span></span
-          ><select class="ql-size" style="display: none">
+          <select class="ql-size">
             <option value="small"></option>
-            <option selected="selected"></option>
+            <!-- Note a missing, thus falsy value, is used to reset to default -->
+            <option selected value="normal"></option>
             <option value="large"></option>
             <option value="huge"></option>
           </select>
@@ -94,8 +21,7 @@
           <button class="ql-bold"></button>
           <button class="ql-italic"></button>
           <button class="ql-underline"></button>
-          <button class="ql-strike">
-          </button>
+          <button class="ql-strike"></button>
         </span>
         <span class="ql-formats">
           <span class="ql-color ql-picker ql-color-picker"
@@ -784,115 +710,26 @@
         </span>
         <!-- 上下标 -->
         <span class="ql-formats">
-          <button class="ql-script" value="sub">
-          </button>
-          <button class="ql-script" value="super">
-          </button>
+          <button class="ql-script" value="sub"></button>
+          <button class="ql-script" value="super"></button>
         </span>
         <!-- 段落控制 -->
         <span class="ql-formats">
-          <button class="ql-header" value="1">
-          </button>
-          <button class="ql-header" value="2">
-          </button>
-          <button class="ql-blockquote">
-          </button>
-          <button class="ql-code-block">
-          </button>
+          <button class="ql-header" value="1"></button>
+          <button class="ql-header" value="2"></button>
+          <button class="ql-blockquote"></button>
+          <button class="ql-code-block"></button>
         </span>
         <!-- 列表和缩进 -->
         <span class="ql-formats">
-          <button class="ql-list" value="ordered">
-          </button>
-          <button class="ql-list" value="bullet">
-          </button>
-          <button class="ql-indent" value="-1">
-          </button>
-          <button class="ql-indent" value="+1">
-          </button>
+          <button class="ql-list" value="ordered"></button>
+          <button class="ql-list" value="bullet"></button>
+          <button class="ql-indent" value="-1"></button>
+          <button class="ql-indent" value="+1"></button>
         </span>
         <span class="ql-formats">
-          <button class="ql-direction" value="rtl">
-          </button>
-          <span class="ql-align ql-picker ql-icon-picker"
-            ><span
-              class="ql-picker-label"
-              tabindex="0"
-              role="button"
-              aria-expanded="false"
-              aria-controls="ql-picker-options-4"
-              ><svg viewBox="0 0 18 18">
-                <line class="ql-stroke" x1="3" x2="15" y1="9" y2="9"></line>
-                <line class="ql-stroke" x1="3" x2="13" y1="14" y2="14"></line>
-                <line
-                  class="ql-stroke"
-                  x1="3"
-                  x2="9"
-                  y1="4"
-                  y2="4"
-                ></line></svg></span
-            ><span
-              class="ql-picker-options"
-              aria-hidden="true"
-              tabindex="-1"
-              id="ql-picker-options-4"
-              ><span tabindex="0" role="button" class="ql-picker-item"
-                ><svg viewBox="0 0 18 18">
-                  <line class="ql-stroke" x1="3" x2="15" y1="9" y2="9"></line>
-                  <line class="ql-stroke" x1="3" x2="13" y1="14" y2="14"></line>
-                  <line
-                    class="ql-stroke"
-                    x1="3"
-                    x2="9"
-                    y1="4"
-                    y2="4"
-                  ></line></svg></span
-              ><span
-                tabindex="0"
-                role="button"
-                class="ql-picker-item"
-                data-value="center"
-                ><svg viewBox="0 0 18 18">
-                  <line class="ql-stroke" x1="15" x2="3" y1="9" y2="9"></line>
-                  <line class="ql-stroke" x1="14" x2="4" y1="14" y2="14"></line>
-                  <line
-                    class="ql-stroke"
-                    x1="12"
-                    x2="6"
-                    y1="4"
-                    y2="4"
-                  ></line></svg></span
-              ><span
-                tabindex="0"
-                role="button"
-                class="ql-picker-item"
-                data-value="right"
-                ><svg viewBox="0 0 18 18">
-                  <line class="ql-stroke" x1="15" x2="3" y1="9" y2="9"></line>
-                  <line class="ql-stroke" x1="15" x2="5" y1="14" y2="14"></line>
-                  <line
-                    class="ql-stroke"
-                    x1="15"
-                    x2="9"
-                    y1="4"
-                    y2="4"
-                  ></line></svg></span
-              ><span
-                tabindex="0"
-                role="button"
-                class="ql-picker-item"
-                data-value="justify"
-                ><svg viewBox="0 0 18 18">
-                  <line class="ql-stroke" x1="15" x2="3" y1="9" y2="9"></line>
-                  <line class="ql-stroke" x1="15" x2="3" y1="14" y2="14"></line>
-                  <line
-                    class="ql-stroke"
-                    x1="15"
-                    x2="3"
-                    y1="4"
-                    y2="4"
-                  ></line></svg></span></span></span
-          ><select class="ql-align" style="display: none">
+          <button class="ql-direction" value="rtl"></button>
+          <select class="ql-align">
             <option selected="selected"></option>
             <option value="center"></option>
             <option value="right"></option>
