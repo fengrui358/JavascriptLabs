@@ -812,44 +812,7 @@
           </button>
         </span>
         <span class="ql-formats">
-          <button class="ql-direction" value="rtl" type="button">
-            <svg viewBox="0 0 18 18">
-              <polygon
-                class="ql-stroke ql-fill"
-                points="3 11 5 9 3 7 3 11"
-              ></polygon>
-              <line
-                class="ql-stroke ql-fill"
-                x1="15"
-                x2="11"
-                y1="4"
-                y2="4"
-              ></line>
-              <path class="ql-fill" d="M11,3a3,3,0,0,0,0,6h1V3H11Z"></path>
-              <rect class="ql-fill" height="11" width="1" x="11" y="4"></rect>
-              <rect
-                class="ql-fill"
-                height="11"
-                width="1"
-                x="13"
-                y="4"
-              ></rect></svg
-            ><svg viewBox="0 0 18 18">
-              <polygon
-                class="ql-stroke ql-fill"
-                points="15 12 13 10 15 8 15 12"
-              ></polygon>
-              <line
-                class="ql-stroke ql-fill"
-                x1="9"
-                x2="5"
-                y1="4"
-                y2="4"
-              ></line>
-              <path class="ql-fill" d="M5,3A3,3,0,0,0,5,9H6V3H5Z"></path>
-              <rect class="ql-fill" height="11" width="1" x="5" y="4"></rect>
-              <rect class="ql-fill" height="11" width="1" x="7" y="4"></rect>
-            </svg>
+          <button class="ql-direction" value="rtl">
           </button>
           <span class="ql-align ql-picker ql-icon-picker"
             ><span
