@@ -1,5 +1,11 @@
 import { stringA, num, setNum } from './module1.js';
 import { stringA as sss, stringB } from './module2.js';
+import defaultFun from './module1.js'
+import * as All from './module1.js'
+
+defaultFun()
+
+console.log(All)
 
 /*
 * module1 中启动了定时器， module2 中也import了module1，但是实验结果表示module1只会加载一次

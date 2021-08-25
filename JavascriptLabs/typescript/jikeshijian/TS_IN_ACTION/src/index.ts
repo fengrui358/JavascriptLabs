@@ -2,6 +2,7 @@ import types from './datatype'
 import enums from './enum'
 import { render, getLib } from './objectDefindes'
 import { add1, Add, Add2 } from './functionDefindes'
+import { print as printModule } from './module'
 
 const s: string = 'Hello Typescript'
 console.log(s)
@@ -52,3 +53,7 @@ const Add2Func: Add2 = (a, b) => (b ? a + b : a)
 console.log(add1())
 console.log(AddFunc(1, 2))
 console.log(Add2Func(3, 4))
+
+console.log('-------------------- 模块 --------------------')
+
+printModule()

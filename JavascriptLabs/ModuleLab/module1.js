@@ -17,3 +17,7 @@ function setNum(num) {
 }
 
 export { stringA, num, setNum };
+
+export default function () {
+    console.log("default module")
+}
