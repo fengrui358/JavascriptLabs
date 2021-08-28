@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     entry: './src/index.ts',
     output: {
-        filename: 'app.js'
+        filename: '[name].[chunkhash:8].js'
     },
     resolve: {
         extensions: ['.js', '.ts', 'tsx']

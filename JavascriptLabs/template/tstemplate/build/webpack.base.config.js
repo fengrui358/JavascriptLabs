@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     entry: './src/index.ts',
     output: {
-        filename: 'app.js'
+        filename: '[name].[chunkhash:8].js'
     },
     resolve: {
-        extensions: ['.js', '.ts', 'tsx']
+        extensions: ['.js', '.ts', '.tsx']
     },
     module: {
         rules: [
@@ -23,5 +23,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/tpl/index.html',
         })
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
 }
