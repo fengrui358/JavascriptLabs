@@ -9,6 +9,6 @@ console.log('1.1 从 date 初始化：', nowDate, moment(nowDate));
 let nowMoment = moment();
 console.log('1.2 直接初始化：', nowMoment);
 
-// 1.3 从字符串初始化
-console.log('1.3 从字符串初始化', moment('1987/08/05 15:36:25'))
+// 1.3 从字符串初始化 todo 得到的时区有问题
+console.log('1.3 从字符串初始化', moment('1987-08-15 16:15:45Z'))
 
