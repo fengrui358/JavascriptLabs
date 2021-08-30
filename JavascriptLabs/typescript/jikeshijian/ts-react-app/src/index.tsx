@@ -11,10 +11,10 @@ import ReactDom from 'react-dom';
 
 // import Hello from './components/demo/Hello'
 // import HelloClass from './components/demo/HelloClass'
-
-import HelloHOC from './components/demo/HelloHOC';
+// import HelloHOC from './components/demo/HelloHOC';
+import HelloHooks from './components/demo/HelloHooks'
 
 ReactDom.render(
-  <HelloHOC name="Typescript" loading={true} />,
+  <HelloHooks name="Typescript" />,
   document.querySelector('.app')
 );
