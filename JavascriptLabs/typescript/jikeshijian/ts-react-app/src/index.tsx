@@ -6,12 +6,13 @@
 //     app.innerHTML = s
 // }
 
-import React from 'react'
+// import React from 'react'
 import ReactDom from 'react-dom'
 
-import Hello from './components/demo/Hello'
+// import Hello from './components/demo/Hello'
+import HelloClass from './components/demo/HelloClass'
 
 ReactDom.render(
-    <Hello name="Typescript" />,
+    <HelloClass name="Typescript" />,
     document.querySelector('.app')
 )
