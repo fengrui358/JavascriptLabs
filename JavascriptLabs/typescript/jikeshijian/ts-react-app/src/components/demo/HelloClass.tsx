@@ -3,7 +3,7 @@ import { Button } from 'antd';
 
 interface Greeting {
   name: string;
-  firstName: string;
+  firstName?: string;
 }
 
 interface State {

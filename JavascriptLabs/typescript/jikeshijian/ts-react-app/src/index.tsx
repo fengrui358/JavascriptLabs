@@ -7,12 +7,14 @@
 // }
 
 // import React from 'react'
-import ReactDom from 'react-dom'
+import ReactDom from 'react-dom';
 
 // import Hello from './components/demo/Hello'
-import HelloClass from './components/demo/HelloClass'
+// import HelloClass from './components/demo/HelloClass'
+
+import HelloHOC from './components/demo/HelloHOC';
 
 ReactDom.render(
-    <HelloClass name="Typescript" />,
-    document.querySelector('.app')
-)
+  <HelloHOC name="Typescript" loading={true} />,
+  document.querySelector('.app')
+);
