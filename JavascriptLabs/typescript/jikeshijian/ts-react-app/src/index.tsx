@@ -7,14 +7,26 @@
 // }
 
 // import React from 'react'
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 
 // import Hello from './components/demo/Hello'
 // import HelloClass from './components/demo/HelloClass'
 // import HelloHOC from './components/demo/HelloHOC';
-import HelloHooks from './components/demo/HelloHooks'
+// import HelloHooks from './components/demo/HelloHooks'
 
-ReactDom.render(
-  <HelloHooks name="Typescript" />,
-  document.querySelector('.app')
+// ReactDom.render(
+//   <HelloHooks name="Typescript" />,
+//   document.querySelector('.app')
+// );
+
+import Root from './routers';
+
+ReactDOM.render(
+    // <Hello name="TypeScript" />,
+    // <HelloClass name="TypeScript" />,
+    // <HelloHOC name="TypeScript" loading={false} />,
+    // <HelloHooks name="TypeScript" />,
+    // <App />,
+    <Root />,
+    document.querySelectorAll('.app')[0]
 );
