@@ -9,7 +9,7 @@ console.log('1.1 从 date 初始化：', nowDate, moment(nowDate));
 let nowMoment = moment();
 console.log('1.2 直接初始化：', nowMoment);
 
-// 1.3 从字符串初始化，不知道为什么 moment 拿到的时间会快 9 个小时
+// 1.3 从字符串初始化
 const ISO8601_String = (new Date(1987, 8, 15 , 16, 15, 45)).toISOString();
 console.log('1.3 从字符串初始化：', ISO8601_String, moment(ISO8601_String), new Date(Date.parse(ISO8601_String)))
 
