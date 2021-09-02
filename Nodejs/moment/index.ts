@@ -22,7 +22,7 @@ moment.defaultFormat = 'YYYY-MM-DD HH:mm:ss:SSSS'
 console.log('2.2 Format 默认格式化输出：', nowMoment.format())
 
 // 2.3 UTC Format 格式化输出
-console.log('2.1 Format 格式化输出：', nowMoment.utc().format())
+console.log('2.3 Format 格式化输出：', nowMoment.utc().format())
 
 // 2.4 UTC Format 默认格式化
 moment.defaultFormatUtc = 'YYYY-MM-DD HH:mm:ss:SSSS'
