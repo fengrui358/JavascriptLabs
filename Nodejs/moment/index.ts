@@ -40,7 +40,7 @@ console.log('4.1 获取当前时区：', moment.tz.guess(), moment.utc())
 console.log('5.1 获取当天最后一刻', moment().endOf('day'))
 console.log('5.2 获取本周最后一刻', moment().endOf('week').startOf('day'))
 console.log('5.3 获取本月第一天', moment().startOf('month'))
-console.log('5.4 获取明年第一天', moment().year(moment().year() + 1).startOf('year'))
+console.log('5.4 获取明年第一天', moment().add(1, 'y').startOf('year'))
 
 // 6. 时长
 // 6.1 原生时长差值
