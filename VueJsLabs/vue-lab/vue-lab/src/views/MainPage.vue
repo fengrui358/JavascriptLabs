@@ -40,6 +40,12 @@
               >多色文本</el-menu-item
             >
           </el-submenu>
+          <el-submenu index="1-6">
+            <template slot="title">函数式组件</template>
+            <el-menu-item index="1-6-1" :route="{ name: 'FunctionalLab' }"
+              >函数式组件</el-menu-item
+            >
+          </el-submenu>
         </el-submenu>
         <el-menu-item index="2">
           <i class="el-icon-menu"></i>

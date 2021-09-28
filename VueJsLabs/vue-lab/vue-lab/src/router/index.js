@@ -15,6 +15,7 @@ const routes = [
     { path: '/InjectProvideLab', name: 'InjectProvideLab', component: () => import(/* webpackChunkName: "views" */ '../views/InjectProvideLab') },
     { path: '/InputLab', name: 'InputLab', component: () => import(/* webpackChunkName: "views" */ '../views/InputLab') },
     { path: '/ColorfulTextLab', name: 'ColorfulTextLab', component: () => import(/* webpackChunkName: "views" */ '../views/ColorfulText/ColorfulTextLab') },
+    { path: '/FunctionalLab', name: 'FunctionalLab', component: () => import(/* webpackChunkName: "views" */ '../views/FunctionalLab') },
     { path: '/bar', component: Bar }
 ]
 
