@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log('没有重写 console', '没有重写 console2');
+
+      window.console = (function (origConsole) {
+        if (!window.console) console = {};
+        return {
+          log: function () {
+            origConsole && origConsole.log && origConsole.log(arguments[0]);
+          },
+          info: function () {
+            origConsole.info(arguments[0]);
+          },
+          warn: function () {
+            origConsole.warn(arguments[0]);
+          },
+          error: function () {
+            origConsole.error(arguments[0]);
+          },
+          time: function () {
+            origConsole.time(arguments[0]);
+          },
+          timeEnd: function () {
+            origConsole.timeEnd(arguments[0]);
+          },
+        };
+      })(window.console);
+
+      console.log('重写 console', '没有重写 console2');
+    </script>
+  </body>
+</html>
