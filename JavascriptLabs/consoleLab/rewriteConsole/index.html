@@ -11,10 +11,9 @@
       console.log('没有重写 console', '没有重写 console2');
 
       window.console = (function (origConsole) {
-        if (!window.console) console = {};
         return {
           log: function () {
-            origConsole && origConsole.log && origConsole.log(arguments[0]);
+            origConsole.log.apply(window, [...arguments]);
           },
           info: function () {
             origConsole.info(arguments[0]);
