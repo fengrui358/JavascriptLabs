@@ -8,32 +8,86 @@
   </head>
   <body>
     <script>
-      console.log('没有重写 console', '没有重写 console2');
+      (function () {
+        let ajax = function ({
+          logType = '',
+          logMessages = [],
+          logTime = new Date(),
+        } = {}) {
+          // 整理 message 为字符串
+          let messages = [];
+          logMessages.forEach((m) => {
+            if (m != null) {
+              if (typeof m == 'string') {
+                messages.push(m);
+              } else if (m instanceof Error) {
+                messages.push(JSON.stringify(m, Object.getOwnPropertyNames(m)));
+              } else if (typeof m == 'object') {
+                messages.push(JSON.stringify(m));
+              } else {
+                messages.push(m.toString());
+              }
+            }
+          });
 
-      window.console = (function (origConsole) {
-        return {
-          log: function () {
-            origConsole.log.apply(window, [...arguments]);
-          },
-          info: function () {
-            origConsole.info(arguments[0]);
-          },
-          warn: function () {
-            origConsole.warn(arguments[0]);
-          },
-          error: function () {
-            origConsole.error(arguments[0]);
-          },
-          time: function () {
-            origConsole.time(arguments[0]);
-          },
-          timeEnd: function () {
-            origConsole.timeEnd(arguments[0]);
-          },
+          return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+              alert(
+                JSON.stringify({
+                  appName: 'app',
+                  logType,
+                  logTime,
+                  messages,
+                })
+              );
+              resolve();
+            }, 1000);
+          });
         };
-      })(window.console);
 
-      console.log('重写 console', '没有重写 console2');
+        const consoleFuns = Object.values(console).filter(
+          (s) => typeof s === 'function'
+        );
+
+        if (window.Proxy) {
+          consoleFuns.forEach((f) => {
+            console[f.name] = new Proxy(f, {
+              apply: function (target, ctx, args) {
+                let r = Reflect.apply(...arguments);
+                ajax({
+                  logType: target.name,
+                  logMessages: [...args],
+                });
+                return r;
+              },
+            });
+          });
+        } else {
+          window.console = (function (origConsole) {
+            let result = {};
+
+            consoleFuns.forEach((f) => {
+              result[f.name] = function () {
+                origConsole[f.name].apply(origConsole, [...arguments]);
+                ajax({
+                  logType: f.name,
+                  logMessages: [...arguments],
+                });
+              };
+            });
+
+            return result;
+          })(window.console);
+        }
+      })();
+
+      // 测试
+      try {
+        missFunc();
+      } catch (error) {
+        console.error(error);
+      }
+      console.info('重写1', { a: '重写2' });
     </script>
   </body>
 </html>
