@@ -8,7 +8,7 @@
   </head>
   <body>
     <script>
-      (function () {
+      window.console = (function (origConsole) {
         let ajax = function ({
           logType = '',
           logMessages = [],
@@ -45,41 +45,22 @@
           });
         };
 
-        const consoleFuns = Object.values(console).filter(
-          (s) => typeof s === 'function'
-        );
+        let result = {};
 
-        if (window.Proxy) {
-          consoleFuns.forEach((f) => {
-            console[f.name] = new Proxy(f, {
-              apply: function (target, ctx, args) {
-                let r = Reflect.apply(...arguments);
-                ajax({
-                  logType: target.name,
-                  logMessages: [...args],
-                });
-                return r;
-              },
-            });
+        Object.values(console)
+          .filter((s) => typeof s === 'function')
+          .forEach((f) => {
+            result[f.name] = function () {
+              origConsole[f.name].apply(origConsole, [...arguments]);
+              ajax({
+                logType: f.name,
+                logMessages: [...arguments],
+              });
+            };
           });
-        } else {
-          window.console = (function (origConsole) {
-            let result = {};
 
-            consoleFuns.forEach((f) => {
-              result[f.name] = function () {
-                origConsole[f.name].apply(origConsole, [...arguments]);
-                ajax({
-                  logType: f.name,
-                  logMessages: [...arguments],
-                });
-              };
-            });
-
-            return result;
-          })(window.console);
-        }
-      })();
+        return result;
+      })(window.console);
 
       // 测试
       try {
