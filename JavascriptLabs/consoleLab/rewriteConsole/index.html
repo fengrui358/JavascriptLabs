@@ -11,6 +11,7 @@
       window.console = (function (origConsole) {
         let ajax = function ({
           logType = '',
+          eventId = 0 || { eventId: 0, eventName: '' },
           logMessages = [],
           logTime = new Date(),
         } = {}) {
@@ -18,11 +19,11 @@
           let messages = [];
           logMessages.forEach((m) => {
             if (m != null) {
-              if (typeof m == 'string') {
+              if (typeof m === 'string') {
                 messages.push(m);
               } else if (m instanceof Error) {
                 messages.push(JSON.stringify(m, Object.getOwnPropertyNames(m)));
-              } else if (typeof m == 'object') {
+              } else if (typeof m === 'object') {
                 messages.push(JSON.stringify(m));
               } else {
                 messages.push(m.toString());
@@ -30,16 +31,29 @@
             }
           });
 
+          let logModel = {
+            appName: 'app',
+            logType,
+            logTime,
+            messages,
+          };
+
+          if (Number.isInteger(eventId) && eventId !== 0) {
+            logModel.eventId = {
+              eventId: eventId,
+            };
+          } else if (typeof eventId === 'object') {
+            if (Number.isInteger(eventId.eventId) && eventId.eventId !== 0) {
+              logModel.eventId = {
+                eventId: eventId.eventId,
+                eventName: eventId.eventName,
+              };
+            }
+          }
+
           return new Promise(function (resolve, reject) {
             setTimeout(function () {
-              alert(
-                JSON.stringify({
-                  appName: 'app',
-                  logType,
-                  logTime,
-                  messages,
-                })
-              );
+              alert(JSON.stringify(logModel));
               resolve();
             }, 1000);
           });
