@@ -9,6 +9,7 @@ import MainPage from "./views/MainPage.vue";
 import test from "./requireContext";
 import funA from "./requireContext/fun";
 import test2 from 'jslibcore'
+// import { interceptRemoteLog } from 'console-intercept'
 
 export default {
   name: "App",
@@ -26,6 +27,7 @@ export default {
     };
   },
   created() {
+    // interceptRemoteLog('web', 'http://localhost:5602/Log')
     console.log('test', test2.utils.largeNumber(56, 78))
     console.log("启动", test.a1());
     console.log("启动", test.a2());
