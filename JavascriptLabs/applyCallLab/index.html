@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function add() {
+        let sum = 0;
+        let args = [...arguments];
+        console.log(args);
+        sum = args.reduce((prev, cur) => {
+          return prev + cur;
+        });
+
+        return sum;
+      }
+
+      (function () {
+        const sum = add(1, 2, 3);
+        const sum2 = add.apply(null, [1, 2, 3]);
+        const sum3 = add.call(null, 1, 2, 3);
+        console.log('sum', sum, sum2, sum3);
+      })();
+    </script>
+  </body>
+</html>
