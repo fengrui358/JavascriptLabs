@@ -16,6 +16,7 @@ const routes = [
     { path: '/InputLab', name: 'InputLab', component: () => import(/* webpackChunkName: "views" */ '../views/InputLab') },
     { path: '/ColorfulTextLab', name: 'ColorfulTextLab', component: () => import(/* webpackChunkName: "views" */ '../views/ColorfulText/ColorfulTextLab') },
     { path: '/FunctionalLab', name: 'FunctionalLab', component: () => import(/* webpackChunkName: "views" */ '../views/FunctionalLab') },
+    { path: '/TemplateAndJsxLab', name: 'TemplateAndJsxLab', component: () => import(/* webpackChunkName: "views" */ '../views/TemplateAndJsxLab') },
     { path: '/bar', component: Bar }
 ]
 

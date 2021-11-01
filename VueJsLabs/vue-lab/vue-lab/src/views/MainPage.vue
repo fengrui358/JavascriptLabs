@@ -46,6 +46,12 @@
               >函数式组件</el-menu-item
             >
           </el-submenu>
+          <el-submenu index="1-7">
+            <template slot="title">Template And JSX</template>
+            <el-menu-item index="1-7-1" :route="{ name: 'TemplateAndJsxLab' }"
+              >Template And JSX</el-menu-item
+            >
+          </el-submenu>
         </el-submenu>
         <el-menu-item index="2">
           <i class="el-icon-menu"></i>
