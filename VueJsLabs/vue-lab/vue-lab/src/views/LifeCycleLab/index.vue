@@ -45,13 +45,24 @@ import LifeCycle2 from "./LifeCycle2.vue";
 import LifeCycle1 from "./LifeCycle1.vue";
 export default {
   components: { LifeCycle1, LifeCycle2 },
+  data() {
+    return {
+      testObj: {
+        a: "",
+      },
+    };
+  },
   beforeCreate() {
     console.log("LifeCycleLab beforeCreate");
   },
   created() {
-    console.log("LifeCycleLab created");
+    let source = { a: "modify" }
+    Object.assign(this.testObj, source)
+    console.log("LifeCycleLab created", this.testObj.a, this.testObj);
   },
   beforeMount() {
+    let source = { a: "modify again" }
+    Object.assign(this.testObj, source)
     console.log("LifeCycleLab beforeMount");
   },
   mounted() {
