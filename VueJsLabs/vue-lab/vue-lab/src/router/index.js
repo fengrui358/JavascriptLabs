@@ -17,6 +17,7 @@ const routes = [
     { path: '/ColorfulTextLab', name: 'ColorfulTextLab', component: () => import(/* webpackChunkName: "views" */ '../views/ColorfulText/ColorfulTextLab') },
     { path: '/FunctionalLab', name: 'FunctionalLab', component: () => import(/* webpackChunkName: "views" */ '../views/FunctionalLab') },
     { path: '/TemplateAndJsxLab', name: 'TemplateAndJsxLab', component: () => import(/* webpackChunkName: "views" */ '../views/TemplateAndJsxLab') },
+    { path: '/LifeCycleLab', name: 'LifeCycleLab', component: () => import(/* webpackChunkName: "views" */ '../views/LifeCycleLab') },
     { path: '/bar', component: Bar }
 ]
 

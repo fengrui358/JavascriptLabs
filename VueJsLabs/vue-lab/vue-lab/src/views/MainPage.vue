@@ -45,11 +45,14 @@
             <el-menu-item index="1-6-1" :route="{ name: 'FunctionalLab' }"
               >函数式组件</el-menu-item
             >
+            <el-menu-item index="1-6-2" :route="{ name: 'TemplateAndJsxLab' }"
+              >Template And JSX</el-menu-item
+            >
           </el-submenu>
           <el-submenu index="1-7">
-            <template slot="title">Template And JSX</template>
-            <el-menu-item index="1-7-1" :route="{ name: 'TemplateAndJsxLab' }"
-              >Template And JSX</el-menu-item
+            <template slot="title">时序和生命周期</template>
+            <el-menu-item index="1-7-1" :route="{ name: 'LifeCycleLab' }"
+              >时序和生命周期</el-menu-item
             >
           </el-submenu>
         </el-submenu>
