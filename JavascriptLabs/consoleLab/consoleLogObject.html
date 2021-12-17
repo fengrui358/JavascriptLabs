@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>console.log 打印对象然后改变对象属性，观察控制台输出</p>
+    <p>结论，直接打印对象会受后续对象属性改变而属性值也改变，但是如果该对象正在被展开观察，则属性值不会变化</p>
+    <button id="change">改变对象属性</button>
+
+    <script>
+        var globalObject = {
+            a: '原始值'
+        }
+
+        let btn = document.querySelector('#change')
+        btn.onclick = function() {
+            globalObject.a = '新值'
+            // console.log(globalObject)
+        }
+
+        console.log(globalObject)
+    </script>
+</body>
+</html>

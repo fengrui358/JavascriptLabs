@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class TimeoutError extends Error {
+        constructor(message) {
+          super(message);
+        }
+      }
+
+      var timeOutPrimise = function () {
+        return new Promise((resole, reject) => {
+          console.log('start timeOutPrimise');
+          setTimeout(() => {
+            console.log('setTimeout over');
+            reject(new TimeoutError('retrun timeOutPrimise reject'));
+          }, 3000);
+        });
+      };
+
+      var doSomeThing = function () {
+        return new Promise((resole, reject) => {
+          console.log('start do something');
+          setTimeout(() => {
+            console.log('end do something');
+            resole('retrun doSomeThing resole');
+          }, 4000);
+        });
+      };
+
+      console.log('start all');
+      var prpmises = [timeOutPrimise(), doSomeThing()];
+
+      Promise.race(prpmises)
+        .then((s) => {
+          console.log('finsih all', s);
+        })
+        .catch((err) => {
+          if (err instanceof TimeoutError) {
+            console.log('finsih all with exception', err, err.constructor.name);
+          }
+        });
+    </script>
+  </body>
+</html>
