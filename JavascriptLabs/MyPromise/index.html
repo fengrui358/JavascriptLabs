@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function MyPromise(fn) {
+        // promise 状态
+        this.promiseState = 'pending';
+        // promise 值
+        this.promiseResult = undefined;
+        // 定义一个函数对象，用来注册 then 中的 callback
+        this.thenCallback = undefined;
+        this.catchCallback = undefined;
+        var _this = this;
+        var resolve = function (value) {
+          console.log('resolve');
+          // 更改 promise 状态和值
+          if (_this.promiseState === 'pending') {
+            _this.promiseState = 'fulfilled';
+            _this.promiseResult = value;
+
+            if (value instanceof MyPromise) {
+              value.then(function (res) {
+                if (_this.thenCallback) {
+                  _this.thenCallback(res);
+                }
+              });
+            } else {
+              setTimeout(() => {
+                if (_this.thenCallback) {
+                  _this.thenCallback(_this.promiseResult);
+                }
+              }, 0);
+            }
+          }
+        };
+        var reject = function (errorValue) {
+          if (_this.promiseState === 'pending') {
+            _this.promiseState = 'rejected';
+            _this.promiseResult = errorValue;
+          }
+        };
+
+        if (fn) {
+          fn(resolve, reject);
+        }
+      }
+
+      MyPromise.prototype.then = function (callback) {
+        var _this = this;
+        return new MyPromise(function (resolve, reject) {
+          _this.thenCallback = function (value) {
+            // 因为在使用链式调用的时候可能第一个调用的不是 catch
+            if (_this.promiseState === 'rejected') {
+              reject(value);
+            } else {
+              var res = callback(value);
+              resolve(res);
+            }
+          };
+        });
+      };
+
+      MyPromise.prototype.catch = function (callback) {
+        var _this = this;
+        return new MyPromise(function (resolve, reject) {
+          _this.catchCallback = function (value) {
+            var res = callback(value);
+            reject(res);
+          };
+        });
+      };
+
+      MyPromise.resolve = function (value) {
+        return new MyPromise(function (resolve, reject) {
+          resolve(value);
+        });
+      };
+
+      var p = new MyPromise((resolve, reject) => {
+        resolve(
+          new MyPromise((resolve2, reject2) => {
+            reject2('我是第一个 promise');
+          })
+        );
+      });
+      console.log(p);
+
+      var p1 = p.then(function (res) {
+        console.log('then 执行', res);
+      });
+
+      p1.then(function (res) {
+        console.log('链式调用 then 执行', res);
+      });
+
+      console.log(p1);
+    </script>
+  </body>
+</html>
