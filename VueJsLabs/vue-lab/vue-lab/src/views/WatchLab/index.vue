@@ -1,6 +1,6 @@
 <template>
     <div>
-        deep 监控一个对象，一次性修改了对象的多个属性，deep 的 watch 只会触发一次
+        <p>deep 监控一个对象，一次性修改了对象的多个属性，deep 的 watch 只会触发一次</p>
         <el-button @click="changeInfo">changeInfo</el-button>
     </div>
 </template>
