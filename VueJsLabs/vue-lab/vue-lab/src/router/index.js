@@ -18,6 +18,7 @@ const routes = [
     { path: '/FunctionalLab', name: 'FunctionalLab', component: () => import(/* webpackChunkName: "views" */ '../views/FunctionalLab') },
     { path: '/TemplateAndJsxLab', name: 'TemplateAndJsxLab', component: () => import(/* webpackChunkName: "views" */ '../views/TemplateAndJsxLab') },
     { path: '/LifeCycleLab', name: 'LifeCycleLab', component: () => import(/* webpackChunkName: "views" */ '../views/LifeCycleLab') },
+    { path: '/WatchLab', name: 'WatchLab', component: () => import(/* webpackChunkName: "views" */ '../views/WatchLab') },
     { path: '/bar', component: Bar }
 ]
 

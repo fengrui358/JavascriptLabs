@@ -55,6 +55,12 @@
               >时序和生命周期</el-menu-item
             >
           </el-submenu>
+          <el-submenu index="1-8">
+            <template slot="title">Watch</template>
+            <el-menu-item index="1-8-1" :route="{ name: 'WatchLab' }"
+              >WatchLab</el-menu-item
+            >
+          </el-submenu>
         </el-submenu>
         <el-menu-item index="2">
           <i class="el-icon-menu"></i>
