@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClipboardLab</title>
+</head>
+<body>
+    <label for="text-input">复制内容</label>
+    <input name="text-input" id="text-input" />
+    <input id="btn" type="button" value="复制" onclick="copy()"/>
+
+    <script>
+        async function copy() {
+            let textInput = document.querySelector('#text-input')
+            try {
+                await navigator.clipboard.writeText(textInput.value);
+                console.log('copy', textInput.value)
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+            }
+        }
+        
+    </script>
+</body>
+</html>
