@@ -25,6 +25,12 @@ export default {
             },
             deep: true
         },
+        'form.name': {
+            handler(val, oldVal) {
+                console.log('form.name changed', val, oldVal);
+                this.form.email = val + this.form.email.split('@')[1];
+            },
+        },
     },
     methods: {
         changeInfo() {
