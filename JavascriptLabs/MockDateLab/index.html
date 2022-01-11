@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/timemachine@0.3.2/timemachine.min.js"></script> -->
+    <script src="./timemachine.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="./momentSet.js"></script>
+    
+    <script>
+      // 1. 改写 Date
+      //var mockDate = new Date(2018, 3, 18, 10, 30, 18, 25);
+    let originalMoment = moment();
+
+    //   console.log(mockDate, '原始 moment:', originalMoment.format());
+    //   timemachine.config({ timestamp: mockDate.getTime() });
+    //   console.log('new Date()', new Date(), Date.now(), moment().toDate().getTime());
+
+    //   // 2. 改写 Date
+    //   var mockDate = new Date(2019, 4, 18, 10, 30, 18, 25);
+    //   timemachine.config({ timestamp: mockDate.getTime() });
+    //   console.log('new Date() 2', new Date(), Date.now(), moment().toDate().getTime());
+
+    //   // 3. 改写相对值
+    //   console.log('原始时间', Date.OriginalDate());
+    //   timemachine.reset();
+    //   console.log('time reset', new Date(), Date.now(), moment().toDate().getTime());
+      timemachine.config({ keepTime: true, difference: -1000 * 60 * 60 * 24 * 5 });
+      setTimeout(() => {
+          console.log(moment())
+        //console.log('new Date() 3', new Date(), Date.now(), moment().toDate().getTime());
+      }, 5000)
+    </script>
+  </body>
+</html>
