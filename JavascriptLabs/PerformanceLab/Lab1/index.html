@@ -1,0 +1,74 @@
+<!-- Performance 工具 https://mp.weixin.qq.com/s/T_Z_xKByZwbrvERoG-1OFw -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 使用 Worker 对代码进行异步优化
+      function runWorker(url, num) {
+        return new Promise((resolve, reject) => {
+          const worker = new Worker(url);
+          worker.onmessage = function (e) {
+            resolve(e.data);
+          };
+          worker.onerror = function (e) {
+            reject(e);
+          };
+          worker.postMessage(num);
+        });
+      }
+    </script>
+
+    <script>
+      var start = new Date();
+
+      window.onload = function () {
+        var end = new Date();
+        console.log('2. document.onload', end);
+        console.log('2. 耗时：', end - start);
+
+        console.log('未优化前同步执行大概耗时 1.7s');
+      };
+      console.log('1. begin run script', start);
+
+      function a() {
+        b();
+      }
+      function b() {
+        // let total = 0;
+        // for (let i = 0; i < 10 * 10000 * 10000; i++) {
+        //   total += i;
+        // }
+        // console.log('b:', total);
+
+        // 改造为异步
+        runWorker('worker.js', 10 * 10000 * 10000).then(total => {
+          console.log('b:', total);
+
+          let endTime = new Date();
+          console.log('异步执行结束', endTime, `耗时：${endTime - start}`);
+        });
+      }
+
+      a();
+    </script>
+    <script>
+      function c() {
+        d();
+      }
+      function d() {
+        let total = 0;
+        for (let i = 0; i < 1 * 10000 * 10000; i++) {
+          total += i;
+        }
+        console.log('c:', total);
+      }
+      c();
+    </script>
+  </body>
+</html>
