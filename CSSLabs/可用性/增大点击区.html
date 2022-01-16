@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>增大点击区</title>
+
+    <style>
+        input[type="button"] {
+            background-color: gray;
+            border: 0;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .more-btn::before {
+            content: " ";
+            position: absolute;
+            left: -6px;
+            right: -6px;
+            top: -6px;
+            bottom: -6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="area">
+        <div>
+            <input type="button" value="btn1">
+        </div>
+        <div>
+            <input class="more-btn" type="button" value="btn2">
+        </div>
+    </div>
+
+    <script>
+        let btns = document.querySelectorAll('input[type="button"]');
+        console.log(btns)
+        for (let index = 0; index < btns.length; index++) {
+            const element = btns[index];
+            element.addEventListener('click', function (e) {
+                console.log(e.target.getAttribute('value') + ' 被点击')
+            })
+        }
+    </script>
+</body>
+</html>
