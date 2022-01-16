@@ -1,48 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>增大点击区</title>
 
     <style>
-        input[type="button"] {
-            background-color: gray;
-            border: 0;
-            margin: 5px;
-            cursor: pointer;
-        }
+      input[type='button'] {
+        background-color: gray;
+        border: 0;
+        margin: 5px;
+        cursor: pointer;
+      }
 
-        .more-btn::before {
-            content: " ";
-            position: absolute;
-            left: -6px;
-            right: -6px;
-            top: -6px;
-            bottom: -6px;
-        }
+      .more-btn {
+        position: relative;
+      }
+      .more-btn::before {
+        content: '';
+        position: absolute;
+        left: -16px;
+        right: -16px;
+        top: -16px;
+        bottom: -16px;
+      }
+
+      button {
+        background-color: gray;
+        border: 0;
+        margin: 5px;
+        cursor: pointer;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="area">
-        <div>
-            <input type="button" value="btn1">
-        </div>
-        <div>
-            <input class="more-btn" type="button" value="btn2">
-        </div>
+      <input type="button" value="btn1" />
+      <input class="more-btn" type="button" value="btn2" />
+      <button>btn3</button>
+      <button class="more-btn">btn4</button>
     </div>
 
     <script>
-        let btns = document.querySelectorAll('input[type="button"]');
-        console.log(btns)
-        for (let index = 0; index < btns.length; index++) {
-            const element = btns[index];
-            element.addEventListener('click', function (e) {
-                console.log(e.target.getAttribute('value') + ' 被点击')
-            })
-        }
+      let btns = document.querySelectorAll('input[type="button"],button');
+      console.log(btns);
+      for (let index = 0; index < btns.length; index++) {
+        const element = btns[index];
+        element.addEventListener('click', function (e) {
+          let value = e.target.getAttribute('value');
+          if (!value) {
+            value = e.target.innerText;
+          }
+          console.log(value + ' 被点击');
+        });
+      }
     </script>
-</body>
+  </body>
 </html>
