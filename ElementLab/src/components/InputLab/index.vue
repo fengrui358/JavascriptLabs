@@ -27,7 +27,7 @@
         @select="handleSelect"
       ></el-autocomplete>
     </el-form-item>
-    <el-button>test</el-button>
+    <el-button @click="handleClick">test</el-button>
   </el-form>
 </template>
 
@@ -202,6 +202,10 @@ export default {
     },
     handleSelect(item) {
       console.log(item);
+    },
+    handleClick() {
+      this.state1 = ''
+      this.state2 = ''
     },
   },
 };
