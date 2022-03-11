@@ -3,6 +3,7 @@ const logger = require('koa-logger');
 const session = require('koa-session');
 const store = require('koa-session-local');
 const router = require('@koa/router');
+const koajwt = require('koa-jwt');
 
 const app = new koa();
 app.use(logger());
@@ -34,6 +35,35 @@ defaultRouter.get('/hi', async (ctx) => {
   ctx.response.body = `hi, ${JSON.stringify(ctx.request.querystring)}`;
 });
 
+const userRouter = new router({
+  prefix: '/user',
+});
+
+userRouter.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (error) {
+    if (error.status === 401) {
+      ctx.status = 401;
+      ctx.body = 'Unauthorized';
+    } else {
+      throw error;
+    }
+  }
+});
+
+userRouter.use(koajwt({ secret: 'secret' }).unless({
+  path: ['/user/api2'],
+}));
+
+userRouter.get('/api', async (ctx) => {
+  ctx.response.body = 'get user info';
+});
+
+userRouter.get('/api2', async (ctx) => {
+  ctx.response.body = 'get user info2';
+});
+
 app.use(async (ctx, next) => {
   let num = ~~ctx.cookies.get('name');
   ctx.cookies.set('name', ++num);
@@ -46,5 +76,6 @@ app.use(async (ctx, next) => {
   //ctx.response.body = 'Hello World2';
 });
 app.use(defaultRouter.routes());
+app.use(userRouter.routes());
 
 app.listen(3006);
