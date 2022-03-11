@@ -1,6 +1,7 @@
 const koa = require('koa');
 const logger = require('koa-logger');
 const session = require('koa-session');
+const store = require('koa-session-local')
 
 const app = new koa();
 app.use(logger());
@@ -8,6 +9,7 @@ app.use(logger());
 app.keys = ['some secret hurr'];
 
 const CONFIG = {
+  store: new store(),
   key: 'koa.sess' /** (string) cookie key (default is koa.sess) */,
   /** (number || 'session') maxAge in ms (default is 1 days) */
   /** 'session' will result in a cookie that expires when session/browser is closed */
