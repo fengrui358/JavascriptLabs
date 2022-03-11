@@ -1,7 +1,8 @@
 const koa = require('koa');
 const logger = require('koa-logger');
 const session = require('koa-session');
-const store = require('koa-session-local')
+const store = require('koa-session-local');
+const router = require('@koa/router');
 
 const app = new koa();
 app.use(logger());
@@ -28,6 +29,11 @@ const CONFIG = {
 
 app.use(session(CONFIG, app));
 
+const defaultRouter = new router();
+defaultRouter.get('/hi', async (ctx) => {
+  ctx.response.body = `hi, ${JSON.stringify(ctx.request.querystring)}`;
+});
+
 app.use(async (ctx, next) => {
   let num = ~~ctx.cookies.get('name');
   ctx.cookies.set('name', ++num);
@@ -35,7 +41,10 @@ app.use(async (ctx, next) => {
   num = ~~ctx.session.views;
   console.log('get session: ', num);
   ctx.session.views = ++num;
-  ctx.response.body = 'Hello World2';
+
+  await next();
+  //ctx.response.body = 'Hello World2';
 });
+app.use(defaultRouter.routes());
 
 app.listen(3006);
