@@ -4,6 +4,7 @@ const session = require('koa-session');
 const store = require('koa-session-local');
 const router = require('@koa/router');
 const koajwt = require('koa-jwt');
+const jwt = require('jsonwebtoken');
 
 const app = new koa();
 app.use(logger());
@@ -61,7 +62,11 @@ userRouter.get('/api', async (ctx) => {
 });
 
 userRouter.get('/api2', async (ctx) => {
-  ctx.response.body = 'get user info2';
+  const userName = ctx.request.query.userName;
+  var token = jwt.sign({ userName }, app.keys[0]);
+  ctx.body = {
+    token: `Bearer ${token}`,
+  }
 });
 
 app.use(async (ctx, next) => {
