@@ -63,7 +63,7 @@ userRouter.get('/api', async (ctx) => {
 
 userRouter.get('/api2', async (ctx) => {
   const userName = ctx.request.query.userName;
-  var token = jwt.sign({ userName }, app.keys[0]);
+  var token = jwt.sign({ userName }, app.keys[0], { expiresIn: '1d' });
   ctx.body = {
     token: `Bearer ${token}`,
   }
