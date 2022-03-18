@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            height: 250px;
+            overflow: auto;
+            width: 200px;
+        }
+
+        .container div {
+            height: 150px;
+            width: 100%;
+        }
+
+        .top {
+            background-color: red;
+            display: flex;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .top-item {
+            border: 1px solid black;
+            width: 33%;
+        }
+
+        .middle {
+            background-color: aqua;
+        }
+
+        .bottom {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <div class="top-item"></div>
+            <div class="top-item"></div>
+            <div class="top-item"></div>
+        </div>
+        <div class="middle"></div>
+        <div class="bottom"></div>
+    </div>
+</body>
+</html>
