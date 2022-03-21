@@ -21,7 +21,7 @@
 
       .cell {
         flex-shrink: 0;
-        width: 100px;
+        flex-grow: 1;
         height: 50px;
         background-color: aqua;
         border-right: 1px solid sandybrown;
@@ -31,17 +31,8 @@
 
       .row {
         display: flex;
-      }
-
-      .header .row .cell:first-child {
-        background-color: red;
-        position: sticky;
-        top: 0;
-        z-index: 2;
-      }
-
-      .header .row .cell {
-        background-color: blue;
+        /* 固定行的宽度 */
+        width: 700px;
       }
 
       .header {
@@ -50,11 +41,21 @@
         z-index: 1;
       }
 
+      .header .row .cell:first-child {
+        background-color: red;
+        position: sticky;
+        top: 0;
+        left: 0;
+      }
+
+      .header .row .cell {
+        background-color: blue;
+      }
+
       .cell:first-child {
         background-color: green;
         position: sticky;
         left: 0;
-        z-index: 1;
       }
 
       .test {
