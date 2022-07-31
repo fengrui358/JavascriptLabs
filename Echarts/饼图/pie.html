@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echarts</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.js"></script>
+  </head>
+  <body>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+    <div id="main" style="width: 600px; height: 400px"></div>
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'));
+
+      // 指定图表的配置项和数据
+      var option = {
+        title: {
+          text: 'ECharts 入门示例',
+        },
+        tooltip: {},
+        legend: {
+          data: ['登记失业人员情况'],
+        },
+        series: [
+          {
+            name: '登记失业人员情况',
+            type: 'pie',
+            selectedMode: 'single',
+            data: [
+              { value: 9090, name: '登记失业人员' },
+              { value: 1537, name: '就业困难登记失业人员', selected: true },
+            ],
+            label: {
+              normal: {
+                alignTo: 'edge',
+                formatter: '{label|{b}：}{person|{c}人}\n {label|({d}%)}',
+                minMargin: 5,
+                edgeDistance: 5,
+                lineHeight: 15,
+                rich: {
+                    label: {
+                    fontSize: 10,
+                    color: '#999',
+                  },
+                  person: {
+                    fontSize: 10,
+                    color: 'inherit',
+                  },
+                },
+              },
+            },
+            // 上下排布的关键代码
+            labelLayout: function (params) {
+              const isLeft = params.labelRect.x < myChart.getWidth() / 2;
+              const points = params.labelLinePoints;
+              // Update the end point.
+              points[2][0] = isLeft
+                ? params.labelRect.x
+                : params.labelRect.x + params.labelRect.width;
+              return {
+                labelLinePoints: points,
+              };
+            },
+          },
+        ],
+      };
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    </script>
+  </body>
+</html>
