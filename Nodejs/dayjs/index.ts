@@ -23,5 +23,5 @@ console.log(dayjs.months());
 // 今天减昨天，获取相差天数
 let startWeek = dayjs().startOf('week')
 
-let diffDay = dayjs().diff(startWeek, 'day')
+let diffDay = dayjs().subtract(8, 'day').diff(startWeek, 'day')
 console.log('周起始', startWeek, diffDay);
