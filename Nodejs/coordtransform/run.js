@@ -1,4 +1,4 @@
-// 
+//
 //国测局坐标(火星坐标,比如高德地图在用),百度坐标,wgs84坐标(谷歌国外以及绝大部分国外在线地图使用的坐标)
 var coordtransform = require('coordtransform');
 // 百度坐标集合
@@ -38,7 +38,7 @@ bd09Points.forEach((point) => {
   var bd09togcj02 = coordtransform.bd09togcj02(point[0], point[1]);
 
   //   result.push(bd09togcj02);
-  //   str = str.concat(`${bd09togcj02[0]},${bd09togcj02[1]}\r\n`); // 国测坐标 GCJ02
+  // str = str.concat(`${bd09togcj02[0]},${bd09togcj02[1]}\r\n`); // 国测坐标 GCJ02
 
   //国测局坐标转wgs84坐标
   var gcj02towgs84 = coordtransform.gcj02towgs84(
