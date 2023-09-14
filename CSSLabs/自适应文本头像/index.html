@@ -1,0 +1,77 @@
+<!-- https://mp.weixin.qq.com/s/3Kt2BqiAa6v8GMSnHo1HBQ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="avator">
+      <div class="avator-inner" alt="家">
+        <!--外层容器A-->
+        <div class="avator-container">
+          <!--容器盒子B-->
+          <span>家</span>
+        </div>
+      </div>
+    </div>
+    <div class="avator">
+      <div class="avator-inner" alt="侦探">
+        <!--外层容器A-->
+        <div class="avator-container">
+          <!--容器盒子B-->
+          <span>侦探</span>
+        </div>
+      </div>
+    </div>
+    <div class="avator">
+      <div class="avator-inner" alt="侦探家">
+        <!--外层容器A-->
+        <div class="avator-container">
+          <!--容器盒子B-->
+          <span>侦探家</span>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    .avator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      background: bisque;
+      color: rgb(250, 84, 28);
+      white-space: nowrap;
+    }
+    .avator-inner {
+      position: relative;
+    }
+    .avator-inner::before {
+      content: attr(alt);
+      visibility: hidden;
+      font-size: 40px;
+    }
+    .avator-container {
+      position: absolute;
+      inset: 0;
+      container-type: inline-size;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .avator-container span {
+      font-size: calc(24px - 10cqw);
+      overflow: hidden;
+      max-width: 40px;
+      text-overflow: ellipsis;
+    }
+  </style>
+</html>
